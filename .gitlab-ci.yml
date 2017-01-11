@@ -20,9 +20,9 @@ stages:
 buildImage:
   stage: build
   script:
-    - echo "CI_BUILD_REF_NAME: "$CI_BUILD_REF_NAME
-    - echo "CI_BUILD_ID: "$CI_BUILD_ID
-    - echo "IMAGE_TAG: "$IMAGE_TAG
+    - "echo ref_name: $CI_BUILD_REF_NAME"
+    - echo $CI_BUILD_ID
+    - echo $IMAGE_TAG
     # - docker build -t $GITLAB_REGISTRY_URL/$REPO:$IMAGE_TAG .
     # - docker push $DOCKER_HUB_URL/$REPO:$IMAGE_TAG
     # - docker push $GITLAB_REGISTRY_URL/$REPO:$IMAGE_TAG
