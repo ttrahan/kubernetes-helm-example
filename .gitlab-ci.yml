@@ -45,5 +45,4 @@ deployToTest:
   environment: test
   script:
     - docker version
-  when:
-    - manual
+  when: manual
