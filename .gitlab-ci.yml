@@ -38,27 +38,20 @@ deployToDev:
   environment: dev
   script:
     - docker version
-  only:
-    - master
-  except:
-    - tags
 
 genRelease:
   stage: release
   environment: dev
   script:
-    - docker pull $DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG
-    - docker tag $DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG
+    - IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG"
+    - docker pull $IMAGE
+    - docker tag $IMAGE-release
   only:
     - tags
 
 deployToTest:
   stage: deployTest
   environment: test
-  only:
-    - master
-  except:
-    - tags
   script:
     - docker version
   when: manual
