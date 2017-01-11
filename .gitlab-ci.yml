@@ -10,7 +10,7 @@ services:
   - docker:dind
 
 before_script:
-  - docker login registry.gitlab.com
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
 
 stages:
   - build
