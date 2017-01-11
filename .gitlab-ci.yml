@@ -24,9 +24,11 @@ buildImage:
   script:
     - if [[ $CI_BUILD_TAG ]]; then
       IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG" &&
+      echo "Building $IMAGE" &&
       docker build --pull -t $IMAGE .;
       else
         IMAGE="$DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG" &&
+        echo "Building $IMAGE" &&
         docker build --pull -t $IMAGE .;
       fi
     - docker push $IMAGE
