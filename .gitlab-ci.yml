@@ -24,12 +24,16 @@ buildImage:
     - docker images
     - docker build --pull -t $DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG .
     - docker push $DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG
+  except:
+    - tags
 
 deployToDev:
   stage: deployDev
   environment: dev
   script:
     - docker version
+  only:
+    - master
 
 genRelease:
   stage: release
@@ -43,6 +47,8 @@ genRelease:
 deployToTest:
   stage: deployTest
   environment: test
+  only:
+    - master
   script:
     - docker version
   when: manual
