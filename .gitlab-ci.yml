@@ -2,7 +2,7 @@ image: docker:latest
 
 variables:
   REPO: sample-node-ayeaye
-  DOCKER_REGISTRY_URL: ttrahan
+  DOCKER_REGISTRY_URL: registry.gitlab.com/ttrahan
   IMAGE_TAG: $CI_BUILD_REF_NAME.$CI_BUILD_ID
   DOCKER_DRIVER: overlay
 
@@ -19,6 +19,7 @@ stages:
 buildImage:
   stage: build
   script:
+    - docker images
     - docker build -t $DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG .
     - docker push $DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG
 
