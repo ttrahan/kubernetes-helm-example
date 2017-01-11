@@ -1,0 +1,24 @@
+image: node:latest
+
+variables:
+  REPO: sample-node-ayeaye
+  GITLAB_REGISTRY_URL: registry.gitlab.com/ttrahan
+  IMAGE_TAG: $CI_BUILD_REF_NAME.$CI_BUILD_ID
+
+before_script:
+  - docker login registry.gitlab.com
+
+stages:
+  - build
+  - deploy
+
+buildImage:
+  stage: build
+  script:
+    - docker build -t $GITLAB_REGISTRY_URL/$REPO:$IMAGE_TAG .
+    - docker push $GITLAB_REGISTRY_URL/$REPO:$IMAGE_TAG
+
+# deployToTestCluster:
+#   stage: deploy
+#   script:
+#     -
