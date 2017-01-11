@@ -34,6 +34,8 @@ deployToDev:
     - docker version
   only:
     - master
+  except:
+    - tags
 
 genRelease:
   stage: release
@@ -49,6 +51,8 @@ deployToTest:
   environment: test
   only:
     - master
+  except:
+    - tags
   script:
     - docker version
   when: manual
