@@ -1,0 +1,50 @@
+resources:
+
+# resources for sample application running on Kubernetes on AWS
+
+################################
+
+# Integration to that stores AWS credentials
+  - name: int-aws
+    type: integration
+    integration: ttrahan-aws
+
+################################
+
+# Docker Image
+  - name: img-nginx
+    type: image
+    integration: ttrahan-dh
+    pointer:
+      sourceName: nginx
+    seed:
+      versionName: 1.7.9
+
+################################
+
+# TEST resources
+
+# Docker Image Options
+  - name: img-opts-sample
+    type: dockerOptions
+    version:
+      memory: 64
+      cpuShares: ".25"
+      portMappings:
+        - 80:80
+      publishAllPorts : true
+
+# env vars - Global
+  - name: params-global
+    type: params
+    version:
+      params:
+        KOPS_STATE_STORE: "s3://clusters.example-kube-cluster.com/demo"
+
+# env vars - Test environment
+  - name: params-sample-test
+    type: params
+    version:
+      params:
+        ENVIRONMENT: "TEST"
+        PORT: 80

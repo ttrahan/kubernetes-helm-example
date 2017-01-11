@@ -1,0 +1,19 @@
+jobs:
+
+# jobs for the sample node app pipeline from CI thru TEST environment
+
+################################
+
+# add pipeline workflow
+
+# TEST deployment to Kube cluster on AWS
+  - name: ecs-deploy-test-sample
+    type: deploy
+    steps:
+      - IN: img-sample
+      - IN: img-opts-sample
+      - IN: params-global
+      - IN: params-sample-test
+      - TASK:
+        - script: ./install.sh
+        - script: ./deploy.sh
