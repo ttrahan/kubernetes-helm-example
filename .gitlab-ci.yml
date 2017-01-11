@@ -3,6 +3,7 @@ image: docker:latest
 variables:
   REPO: kube-example
   DOCKER_REGISTRY_URL: registry.gitlab.com/ttrahan
+  GIT_TAG: $CI_BUILD_TAG
   IMAGE_TAG: $CI_BUILD_REF_NAME.$CI_BUILD_ID
   DOCKER_DRIVER: overlay
 
@@ -21,11 +22,14 @@ stages:
 buildImage:
   stage: build
   script:
-    - docker images
-    - docker build --pull -t $DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG .
-    - docker push $DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG
-  except:
-    - tags
+    - if [[ $CI_BUILD_TAG ]]; then
+      IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG" &&
+      docker build --pull -t $IMAGE .;
+      else
+        IMAGE="$DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG" &&
+        docker build --pull -t $IMAGE .;
+      fi
+    - docker push $IMAGE
 
 deployToDev:
   stage: deployDev
