@@ -45,7 +45,8 @@ genRelease:
   script:
     - IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG"
     - docker pull $IMAGE
-    - docker tag $IMAGE-release
+    - docker tag $IMAGE $IMAGE-release
+    - docker push $IMAGE-release
   only:
     - tags
 
@@ -55,3 +56,5 @@ deployToTest:
   script:
     - docker version
   when: manual
+  only:
+    - tags
