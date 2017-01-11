@@ -14,17 +14,36 @@ before_script:
 
 stages:
   - build
-  - deploy
+  - deployDev
+  - release
+  - deployTest
 
 buildImage:
   stage: build
   script:
     - docker images
-    - docker build -t $DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG .
+    - docker build --pull -t $DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG .
     - docker push $DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG
 
-# deployToTestCluster:
-#   stage: deploy
-#   environment: test
-#   script:
-#     -
+deployToDev:
+  stage: deployDev
+  environment: dev
+  script:
+    - docker version
+
+genRelease:
+  stage: release
+  environment: dev
+  script:
+    - docker pull $DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG
+    - docker tag $DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG
+  only:
+    - tags
+
+deployToTest:
+  stage: deployTest
+  environment: test
+  script:
+    - docker version
+  when:
+    - manual
