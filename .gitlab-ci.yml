@@ -14,6 +14,7 @@ services:
 
 before_script:
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+  - ls -R
   - ./install.sh
   - mkdir ~/.kube
   - aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
