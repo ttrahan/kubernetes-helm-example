@@ -20,9 +20,9 @@ before_script:
   - mkdir ~/.kube
   - aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
   - if [[ $CI_BUILD_TAG ]]; then
-    IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG"
+    IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG";
     else
-      IMAGE="$DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG"
+      IMAGE="$DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG";
     fi
 
 
