@@ -13,7 +13,7 @@ services:
   - docker:dind
 
 before_script:
-  - ./installGlobal.sh
+  - ./pipeline/install/installGlobal.sh
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
   - if [[ $CI_BUILD_TAG ]]; then
     IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG";
