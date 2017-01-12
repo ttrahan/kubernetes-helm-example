@@ -2,19 +2,34 @@
 
 # install all dependencies required to execute deployment
 
+DISTRO=alpine
+# DISTRO=ubuntu
+
+if [ $DISTRO == ubuntu ]; then
+  TOOL="sudo apt-get"
+  INSTALL_CMD="apt-get install"
+elif [ $DISTRO == alpine ]; then
+  TOOL="apk"
+  INSTALL_CMD="apk add"
+else
+  echo "Linux distro not supported"
+  # exit
+fi
+
 # environment variables
 export AWS_ACCESS_KEY_ID=$INTAWS_INTEGRATION_AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY=$INTAWS_INTEGRATION_AWS_SECRET_ACCESS_KEY
 
-sudo apt-get update
-sudo apt-get install gettext
+# update the package index and install tools
+$TOOL update
+$INSTALL_CMD gettext curl sudo
 
 # install AWS CLI
 # install Python and PIP if not installed
 if [[ ! $(which python) ]]; then
-  sudo apt-get install python27
+  sudo $INSTALL_CMD python
   curl -O https://bootstrap.pypa.io/get-pip.py
-  sudo python27 get-pip.py
+  sudo python get-pip.py
 fi
 # install AWS CLI
 if [[ ! $(which aws) ]]; then
