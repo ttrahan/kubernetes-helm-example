@@ -6,12 +6,23 @@ variables:
   GIT_TAG: $CI_BUILD_TAG
   IMAGE_TAG: $CI_BUILD_REF_NAME.$CI_BUILD_ID
   DOCKER_DRIVER: overlay
+  IMGOPTSSAMPLE_VERSION_MEMORY: 128
+  IMGOPTSSAMPLE_VERSION_CPUSHARES: "0.25"
 
 services:
   - docker:dind
 
 before_script:
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+  - ./install.sh
+  - mkdir ~/.kube
+  - aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
+  - if [[ $CI_BUILD_TAG ]]; then
+    IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG"
+    else
+      IMAGE="$DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG"
+    fi
+
 
 stages:
   - build
@@ -22,28 +33,20 @@ stages:
 buildImage:
   stage: build
   script:
-    - if [[ $CI_BUILD_TAG ]]; then
-      IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG" &&
-      echo "Building $IMAGE" &&
-      docker build --pull -t $IMAGE .;
-      else
-        IMAGE="$DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG" &&
-        echo "Building $IMAGE" &&
-        docker build --pull -t $IMAGE .;
-      fi
+    - echo "Building $IMAGE"
+    - docker build --pull -t $IMAGE .
     - docker push $IMAGE
 
 deployToDev:
   stage: deployDev
   environment: dev
   script:
-    - docker version
+    - ./deploy.sh
 
 genRelease:
   stage: release
   environment: dev
   script:
-    - IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG"
     - docker pull $IMAGE
     - docker tag $IMAGE $IMAGE-release
     - docker push $IMAGE-release
