@@ -22,7 +22,7 @@ export AWS_SECRET_ACCESS_KEY=$INTAWS_INTEGRATION_AWS_SECRET_ACCESS_KEY
 
 # update the package index and install tools
 $TOOL update
-$INSTALL_CMD gettext curl sudo
+$INSTALL_CMD gettext curl sudo bash
 
 # install AWS CLI
 # install Python and PIP if not installed
