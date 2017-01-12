@@ -13,18 +13,13 @@ services:
   - docker:dind
 
 before_script:
-  - ./install.sh
+  - ./installGlobal.sh
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-  - mkdir ~/.aws
-  - echo -e "[default]\naws_access_key_id=$AWS_ACCESS_KEY_ID\naws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials2
-  - mkdir ~/.kube
-  - aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
   - if [[ $CI_BUILD_TAG ]]; then
     IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG";
     else
       IMAGE="$DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG";
     fi
-
 
 stages:
   - build
@@ -43,7 +38,9 @@ deployToDev:
   stage: deployDev
   environment: dev
   script:
-    - ./deploy.sh
+    - ./pipeline/install/installAwsCli.sh
+    - ./pipeline/install/installKubeCli.sh
+    - ./pipeline/deploy.sh
 
 genRelease:
   stage: release
@@ -59,7 +56,9 @@ deployToTest:
   stage: deployTest
   environment: test
   script:
-    - docker version
+    - ./pipeline/install/installAwsCli.sh
+    - ./pipeline/install/installKubeCli.sh
+    - ./pipeline/deploy.sh
   when: manual
   only:
     - tags

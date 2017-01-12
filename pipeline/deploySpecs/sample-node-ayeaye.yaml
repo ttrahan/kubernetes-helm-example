@@ -22,9 +22,9 @@ spec:
         - containerPort: 80
         env:
         - name: ENVIRONMENT
-          value: "test"
+          value: ""
         - name: PORT
-          value: "80"
+          value: ""
         resources:
           requests:
             memory: 128
