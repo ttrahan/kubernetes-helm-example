@@ -1,4 +1,4 @@
-#! /bin/bash -e
+#! /bin/sh -e
 
 # install all dependencies required to execute deployment
 
@@ -12,7 +12,7 @@ sudo apt-get install gettext
 # install AWS CLI
 # install Python and PIP if not installed
 if [[ ! $(which python) ]]; then
-  sudo apt-get install python27
+  sudo apk add python27
   curl -O https://bootstrap.pypa.io/get-pip.py
   sudo python27 get-pip.py
 fi
