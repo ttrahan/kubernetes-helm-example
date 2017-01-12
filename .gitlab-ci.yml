@@ -38,9 +38,10 @@ deployToDev:
   stage: deployDev
   environment: dev
   script:
-    - ./pipeline/install/installAwsCli.sh
-    - ./pipeline/install/installKubeCli.sh
-    - ./pipeline/deploy.sh
+    - echo $TOOL $INSTALL_CMD
+    - . ./pipeline/install/installAwsCli.sh
+    - . ./pipeline/install/installKubeCli.sh
+    - . ./pipeline/deploy.sh
 
 genRelease:
   stage: release
@@ -56,9 +57,9 @@ deployToTest:
   stage: deployTest
   environment: test
   script:
-    - ./pipeline/install/installAwsCli.sh
-    - ./pipeline/install/installKubeCli.sh
-    - ./pipeline/deploy.sh
+    - . ./pipeline/install/installAwsCli.sh
+    - . ./pipeline/install/installKubeCli.sh
+    - . ./pipeline/deploy.sh
   when: manual
   only:
     - tags
