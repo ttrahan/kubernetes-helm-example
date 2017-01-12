@@ -13,9 +13,10 @@ services:
   - docker:dind
 
 before_script:
-  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-  - cat /etc/issue
   - ./install.sh
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+  - mkdir ~/.aws
+  - echo -e "[default]\naws_access_key_id=$AWS_ACCESS_KEY_ID\naws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials2
   - mkdir ~/.kube
   - aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
   - if [[ $CI_BUILD_TAG ]]; then
