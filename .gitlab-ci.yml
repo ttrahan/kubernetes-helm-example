@@ -30,7 +30,7 @@ stages:
 buildImage:
   stage: build
   script:
-    - echo "Building $IMAGE"
+    - echo "Building "$IMAGE
     - docker build --pull -t $IMAGE .
     - docker push $IMAGE
 
