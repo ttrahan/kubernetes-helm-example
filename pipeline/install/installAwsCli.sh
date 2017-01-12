@@ -2,17 +2,17 @@
 
 echo "installing AWS CLI..."
 
-# adjust for distro and export variables via .bash_profile for new shells
-if [ $DISTRO == ubuntu ]; then
-  export TOOL="sudo apt-get"
-  export INSTALL_CMD="apt-get install"
-elif [ $DISTRO == alpine ]; then
-  export TOOL="apk"
-  export INSTALL_CMD="apk add"
-else
-  echo "Linux distro not supported"
-  # exit
-fi
+# # adjust for distro and export variables via .bash_profile for new shells
+# if [ $DISTRO == ubuntu ]; then
+#   export TOOL="sudo apt-get"
+#   export INSTALL_CMD="apt-get install"
+# elif [ $DISTRO == alpine ]; then
+#   export TOOL="apk"
+#   export INSTALL_CMD="apk add"
+# else
+#   echo "Linux distro not supported"
+#   # exit
+# fi
 
 # add AWS credentials
 if [[ ! -d ~/.aws ]]; then

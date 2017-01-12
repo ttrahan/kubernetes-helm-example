@@ -13,7 +13,7 @@ services:
   - docker:dind
 
 before_script:
-  - ./pipeline/install/installGlobal.sh
+  - . ./pipeline/install/installGlobal.sh
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
   - if [[ $CI_BUILD_TAG ]]; then
     IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG";
@@ -39,9 +39,9 @@ deployToDev:
   environment: dev
   script:
     - echo $TOOL $INSTALL_CMD
-    - . ./pipeline/install/installAwsCli.sh
-    - . ./pipeline/install/installKubeCli.sh
-    - . ./pipeline/deploy.sh
+    - ./pipeline/install/installAwsCli.sh
+    - ./pipeline/install/installKubeCli.sh
+    - ./pipeline/deploy.sh
 
 genRelease:
   stage: release
