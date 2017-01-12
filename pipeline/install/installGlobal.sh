@@ -8,11 +8,11 @@ DISTRO=alpine
 # DISTRO=ubuntu
 
 if [ $DISTRO == ubuntu ]; then
-  TOOL="sudo apt-get"
-  INSTALL_CMD="apt-get install"
+  export TOOL="sudo apt-get"
+  export INSTALL_CMD="apt-get install"
 elif [ $DISTRO == alpine ]; then
-  TOOL="apk"
-  INSTALL_CMD="apk add"
+  export TOOL="apk"
+  export INSTALL_CMD="apk add"
 else
   echo "Linux distro not supported"
   # exit

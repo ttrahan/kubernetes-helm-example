@@ -3,8 +3,12 @@
 echo "installing kubectl CLI..."
 
 # add Kube config
-- mkdir ~/.kube
-- aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
+if [[ ! -d ~/.aws ]]; then
+  mkdir ~/.kube
+fi
+
+# copy shared credentials from S3 bucket to job node
+aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
 
 # install Kubernetes CLI
 if [[ ! $(which kubectl) ]]; then
