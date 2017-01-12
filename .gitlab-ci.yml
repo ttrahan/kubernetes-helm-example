@@ -14,8 +14,7 @@ services:
 
 before_script:
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-  - ls -R
-  - $CI_PROJECT_DIR/install.sh
+  - source install.sh
   - mkdir ~/.kube
   - aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
   - if [[ $CI_BUILD_TAG ]]; then
@@ -42,7 +41,7 @@ deployToDev:
   stage: deployDev
   environment: dev
   script:
-    - $CI_PROJECT_DIR/deploy.sh
+    - source deploy.sh
 
 genRelease:
   stage: release
