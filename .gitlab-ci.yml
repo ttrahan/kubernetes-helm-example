@@ -47,7 +47,6 @@ deployToDev:
   script:
     - ./pipeline/install/installKubeCli.sh
     - aws s3 cp $STATE_STORE/state_last_image.env . && source state_last_image.env && TAG=$LAST_IMAGE_BUILT
-    - echo $CI_ENVIRONMENT_NAME
     - ./pipeline/deploy.sh
     - echo export LAST_DEPLOY_DEV=$TAG > state_last_deployDev.env
     - aws s3 cp state_last_deployDev.env $STATE_STORE

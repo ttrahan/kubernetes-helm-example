@@ -15,7 +15,6 @@ for file in pipeline/deployTemplates/*.yaml; do
   TEMPLATE=$file
   DEST=$(echo $(basename $file) | sed 's/-template//')
   envsubst < $TEMPLATE > pipeline/deploySpecs/$DEST
-  cat pipeline/deploySpecs/$DEST
 done;
 
 # for each deploySpec, execute deployment to Kube cluster
@@ -23,12 +22,11 @@ for file in pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
   baseFile=${file##*/}
   deploymentName=${baseFile%.yaml}
-  echo $deploymentName
   kubectl apply -f $file --record
   STATUS=""
   while [[ "$STATUS" != *"successfully rolled out"* ]]; do
     STATUS=$(kubectl rollout status deployments $deploymentName)
-    echo $STATUS
-    sleep 3
+    echo -e $STATUS\n
+    sleep 1
   done
 done;
