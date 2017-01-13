@@ -14,7 +14,7 @@ spec:
         # Apply this label to pods and default
         # the Deployment label selector to this value
         app: nginx
-        env: 
+        env: dev
     spec:
       containers:
       - name: nginx

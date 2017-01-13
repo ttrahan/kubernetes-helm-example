@@ -21,14 +21,14 @@ done;
 # for each deploySpec, execute deployment to Kube cluster
 for file in pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
-  baseFile=${file#*/}
+  baseFile=${file##*/}
   deploymentName=${baseFile%.yaml}
+  echo $deploymentName
   kubectl apply -f $file --record
   STATUS=""
-  while [ "$STATUS" != *"successfully rolled out"* ]; do
+  while [[ "$STATUS" != *"successfully rolled out"* ]]; do
     STATUS=$(kubectl rollout status deployments $deploymentName)
     echo $STATUS
     sleep 3
   done
-  printf "deployment completed"
 done;
