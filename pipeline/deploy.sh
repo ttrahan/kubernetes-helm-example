@@ -21,6 +21,13 @@ done;
 for file in pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
   # baseFile=${file#*/}
-  # baseFileNoExt=${baseFile%.yaml}
+  deploymentName=${baseFile%.yaml}
   kubectl apply -f $file --record
+  STATUS=""
+  while [ "$STATUS" != *"successfully rolled out"* ]; do
+    STATUS=$(kubectl rollout status deployments $deploymentName)
+    echo $STATUS
+    sleep 3
+  done
+  printf "deployment completed"
 done;
