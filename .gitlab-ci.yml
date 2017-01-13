@@ -1,7 +1,7 @@
 image: docker:latest
 
 variables:
-  REPO: sample-node-ayeaye
+  REPO: kube-example
   DOCKER_REGISTRY_URL: registry.gitlab.com/ttrahan
   GIT_TAG: $CI_BUILD_TAG
   IMAGE_TAG: $CI_BUILD_REF_NAME.$CI_BUILD_ID
