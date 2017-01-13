@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   # Unique key of the Deployment instance
-  name: sample-node-ayeaye
+  name: sample-node-ayeaye-$CI_ENVIRONMENT_NAME
 spec:
   # 3 Pods should exist at all times.
   replicas: 1

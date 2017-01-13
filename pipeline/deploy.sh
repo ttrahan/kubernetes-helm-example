@@ -21,7 +21,7 @@ done;
 for file in pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
   baseFile=${file##*/}
-  deploymentName=${baseFile%.yaml}
+  deploymentName=${baseFile%.yaml}-$CI_ENVIRONMENT_NAME
   kubectl apply -f $file --record
   STATUS=""
   while [[ "$STATUS" != *"successfully rolled out"* ]]; do
