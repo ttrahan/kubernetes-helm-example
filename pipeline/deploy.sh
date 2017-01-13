@@ -15,6 +15,7 @@ for file in pipeline/deployTemplates/*.yaml; do
   TEMPLATE=$file
   DEST=$(echo $(basename $file) | sed 's/-template//')
   envsubst < $TEMPLATE > pipeline/deploySpecs/$DEST
+  cat pipeline/deploySpecs/$DEST
 done;
 
 # for each deploySpec, execute deployment to Kube cluster
