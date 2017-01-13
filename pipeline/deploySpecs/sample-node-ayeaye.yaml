@@ -14,10 +14,11 @@ spec:
         # Apply this label to pods and default
         # the Deployment label selector to this value
         app: sample-node-ayeaye
+        env: dev
     spec:
       containers:
       - name: sample-node-ayeaye
-        image: registry.gitlab.com/ttrahan/kube-example:master.8512876
+        image: /:
         ports:
         - containerPort: 80
         env:
@@ -27,7 +28,7 @@ spec:
           value: ""
         resources:
           requests:
-            memory: 128
-            cpu: 0.25
+            memory: 
+            cpu: 
       imagePullSecrets:
       - name: gitlab-ttrahan
