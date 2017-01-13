@@ -24,3 +24,6 @@ Delete the cluster:
 ```
 kops delete cluster useast1.dev.example-kube-cluster.com --yes
 ```
+
+To add ability to pull images from private registry:
+https://kubernetes.io/docs/user-guide/images/#specifying-imagepullsecrets-on-a-pod

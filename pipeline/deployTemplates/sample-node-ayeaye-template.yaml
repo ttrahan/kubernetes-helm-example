@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: sample-node-ayeaye
-        image: $DOCKER_REGISTRY_URL/sample_node_ayeaye:$TAG
+        image: $DOCKER_REGISTRY_URL/kube-example:$TAG
         ports:
         - containerPort: 80
         env:
@@ -29,3 +29,5 @@ spec:
           requests:
             memory: $IMGOPTSSAMPLE_VERSION_MEMORY
             cpu: $IMGOPTSSAMPLE_VERSION_CPUSHARES
+      imagePullSecrets:
+      - name: gitlab-ttrahan

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: sample-node-ayeaye
-        image: ttrahan/sample_node_ayeaye:master.92
+        image: registry.gitlab.com/ttrahan/kube-example:master.8512876
         ports:
         - containerPort: 80
         env:
@@ -29,3 +29,5 @@ spec:
           requests:
             memory: 128
             cpu: 0.25
+      imagePullSecrets:
+      - name: gitlab-ttrahan
