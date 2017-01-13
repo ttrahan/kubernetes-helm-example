@@ -1,9 +1,9 @@
 #! /bin/bash -e
 
 # source environment variables (these come from shippable.resources.yml when running via Shippable pipeline)
-set -a
-source ./variables.env
-set +a
+# set -a
+# source ./variables.env
+# set +a
 
 echo "deploying to Kubernetes cluster..."
 
