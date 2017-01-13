@@ -39,7 +39,7 @@ buildImage:
     - docker build --pull -t $IMAGE .
     - docker push $IMAGE
     - echo export LAST_IMAGE_BUILT=$TAG > state_last_image.env
-    - aws s3 cp state_last_build.env $STATE_STORE
+    - aws s3 cp state_last_image.env $STATE_STORE
 
 deployToDev:
   stage: deployDev
