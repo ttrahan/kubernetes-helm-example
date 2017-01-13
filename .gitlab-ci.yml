@@ -16,6 +16,7 @@ services:
 
 before_script:
   - . ./pipeline/install/installGlobal.sh # execute in same shell
+  - . ./pipeline/install/installAwsCli.sh
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
   - if [[ $CI_BUILD_TAG ]]; then
     export IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG" &&
@@ -37,26 +38,24 @@ buildImage:
     - echo "Building "$IMAGE
     - docker build --pull -t $IMAGE .
     - docker push $IMAGE
-    - echo export LAST_IMAGE_BUILT=$IMAGE > state_last_build.env
+    - echo export LAST_IMAGE_BUILT=$TAG > state_last_image.env
     - aws s3 cp state_last_build.env $STATE_STORE
 
 deployToDev:
   stage: deployDev
   environment: dev
   script:
-    - echo $TOOL $INSTALL_CMD
-    - ./pipeline/install/installAwsCli.sh
     - ./pipeline/install/installKubeCli.sh
-    - aws s3 cp $STATE_STORE/state_latest_build.env . && source state_latest_build.env && IMAGE=$LAST_IMAGE_BUILT
+    - aws s3 cp $STATE_STORE/state_last_image.env . && source state_last_image.env && TAG=$LAST_IMAGE_BUILT
     - ./pipeline/deploy.sh
+    - echo export LAST_IMAGE_DEPLOYED_DEV=$TAG > state_last_deployToDev.env
 
 genRelease:
   stage: release
   environment: dev
   script:
-    - docker pull $IMAGE
-    - docker push $IMAGE
-    - echo export LAST_TAG_BUILT=$IMAGE > state_last_tag.env
+    - aws s3 cp $STATE_STORE/state_last_deployToDev.env . && source state_last_deployToDev.env && TAG=$LAST_IMAGE_DEPLOYED_DEV
+    - echo export LATEST_RELEASE=$TAG > state_latest_release.env
   only:
     - tags
 
@@ -64,9 +63,8 @@ deployToTest:
   stage: deployTest
   environment: test
   script:
-    - ./pipeline/install/installAwsCli.sh
     - ./pipeline/install/installKubeCli.sh
-    - aws s3 cp $STATE_STORE/state_latest_tag.env . && source state_last_tag.env && IMAGE=$LAST_TAG_BUILT
+    - aws s3 cp $STATE_STORE/state_latest_release.env . && source state_latest_release.env && TAG=$LATEST_RELEASE
     - ./pipeline/deploy.sh
   when: manual
   only:
