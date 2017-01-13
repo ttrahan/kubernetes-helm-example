@@ -17,11 +17,11 @@ before_script:
   - . ./pipeline/install/installGlobal.sh # execute in same shell
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
   - if [[ $CI_BUILD_TAG ]]; then
-    IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG" &&
-    TAG="$GIT_TAG";
+    export IMAGE="$DOCKER_REGISTRY_URL/$REPO:$GIT_TAG" &&
+    export TAG="$GIT_TAG";
     else
-      IMAGE="$DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG" &&
-      TAG="$IMAGE_TAG";
+      export IMAGE="$DOCKER_REGISTRY_URL/$REPO:$IMAGE_TAG" &&
+      export TAG="$IMAGE_TAG";
     fi
 
 stages:
