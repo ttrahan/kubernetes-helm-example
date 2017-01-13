@@ -48,13 +48,15 @@ deployToDev:
     - ./pipeline/install/installKubeCli.sh
     - aws s3 cp $STATE_STORE/state_last_image.env . && source state_last_image.env && TAG=$LAST_IMAGE_BUILT
     - ./pipeline/deploy.sh
-    - echo export LAST_IMAGE_DEPLOYED_DEV=$TAG > state_last_deployToDev.env
+    - echo export LAST_DEPLOY_DEV=$TAG > state_last_deployDev.env
+    - aws s3 cp state_last_deployDev.env $STATE_STORE
+
 
 genRelease:
   stage: release
   environment: dev
   script:
-    - aws s3 cp $STATE_STORE/state_last_deployToDev.env . && source state_last_deployToDev.env && TAG=$LAST_IMAGE_DEPLOYED_DEV
+    - aws s3 cp $STATE_STORE/state_last_deployToDev.env . && source state_last_deployToDev.env && TAG=$LAST_DEPLOY_DEV
     - echo export LATEST_RELEASE=$TAG > state_latest_release.env
   only:
     - tags
@@ -66,6 +68,8 @@ deployToTest:
     - ./pipeline/install/installKubeCli.sh
     - aws s3 cp $STATE_STORE/state_latest_release.env . && source state_latest_release.env && TAG=$LATEST_RELEASE
     - ./pipeline/deploy.sh
+    - echo export LAST_DEPLOY_TEST=$TAG > state_last_deployTest.env
+    - aws s3 cp state_last_deployTest.env $STATE_STORE
   when: manual
   only:
     - tags
