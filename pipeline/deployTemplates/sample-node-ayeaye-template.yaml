@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: sample-node-ayeaye
-        image: ttrahan/sample_node_ayeaye:$IMAGE_TAG
+        image: $DOCKER_REGISTRY_URL/sample_node_ayeaye:$TAG
         ports:
         - containerPort: 80
         env:
