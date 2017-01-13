@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: sample-node-ayeaye
-        image: $DOCKER_REGISTRY_URL/kube-example:$TAG
+        image: $IMAGE
         ports:
         - containerPort: 80
         env:
