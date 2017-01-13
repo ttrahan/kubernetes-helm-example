@@ -14,6 +14,7 @@ spec:
         # Apply this label to pods and default
         # the Deployment label selector to this value
         app: sample-node-ayeaye
+        env: $CI_ENVIRONMENT_NAME
     spec:
       containers:
       - name: sample-node-ayeaye
