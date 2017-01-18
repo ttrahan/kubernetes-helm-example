@@ -7,8 +7,8 @@ jobs:
 # add pipeline workflow
 
 # TEST deployment to Kube cluster on AWS
-  - name: ecs-deploy-test-sample
-    type: deploy
+  - name: kube-deploy-test-sample
+    type: runSh
     steps:
       - IN: img-sample
       - IN: img-opts-sample

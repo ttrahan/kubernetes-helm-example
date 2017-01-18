@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   # Unique key of the Deployment instance
-  name: nginx-$CI_ENVIRONMENT_NAME
+  name: nginx-$TEST
 spec:
   # 3 Pods should exist at all times.
   replicas: 2
@@ -14,7 +14,7 @@ spec:
         # Apply this label to pods and default
         # the Deployment label selector to this value
         app: nginx
-        env: $CI_ENVIRONMENT_NAME
+        env: $TEST
     spec:
       containers:
       - name: nginx

@@ -5,9 +5,9 @@ resources:
 ################################
 
 # Integration to that stores AWS credentials
-  - name: int-aws
+  - name: int-bastion
     type: integration
-    integration: ttrahan-aws
+    integration: ttrahan-bastion
 
 ################################
 
@@ -47,4 +47,12 @@ resources:
     version:
       params:
         ENVIRONMENT: "TEST"
+        PORT: 80
+
+# env vars - Prod environment
+  - name: params-sample-prod
+    type: params
+    version:
+      params:
+        ENVIRONMENT: "PROD"
         PORT: 80

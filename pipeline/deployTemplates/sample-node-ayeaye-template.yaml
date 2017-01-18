@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   # Unique key of the Deployment instance
-  name: sample-node-ayeaye-$CI_ENVIRONMENT_NAME
+  name: sample-node-ayeaye-$ENVIRONMENT
 spec:
   # 3 Pods should exist at all times.
   replicas: 1
@@ -14,7 +14,7 @@ spec:
         # Apply this label to pods and default
         # the Deployment label selector to this value
         app: sample-node-ayeaye
-        env: $CI_ENVIRONMENT_NAME
+        env: $ENVIRONMENT
     spec:
       containers:
       - name: sample-node-ayeaye
@@ -31,4 +31,4 @@ spec:
             memory: $IMGOPTSSAMPLE_VERSION_MEMORY
             cpu: $IMGOPTSSAMPLE_VERSION_CPUSHARES
       imagePullSecrets:
-      - name: gitlab-ttrahan
+      - name: ttrahan-kube
