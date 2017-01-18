@@ -25,7 +25,7 @@ resources:
 # TEST resources
 
 # Docker Image Options
-  - name: img-opts-sample
+  - name: img-opts-sample-kube
     type: dockerOptions
     version:
       memory: 64
@@ -35,14 +35,14 @@ resources:
       publishAllPorts : true
 
 # env vars - Global
-  - name: params-global
+  - name: params-global-kube
     type: params
     version:
       params:
         KOPS_STATE_STORE: "s3://clusters.example-kube-cluster.com/demo"
 
 # env vars - Test environment
-  - name: params-sample-test
+  - name: params-sample-test-kube
     type: params
     version:
       params:
@@ -50,7 +50,7 @@ resources:
         PORT: 80
 
 # env vars - Prod environment
-  - name: params-sample-prod
+  - name: params-sample-prod-kube
     type: params
     version:
       params:
