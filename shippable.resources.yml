@@ -12,13 +12,13 @@ resources:
 ################################
 
 # Docker Image
-  - name: img-nginx
+  - name: img-sample-ayeaye
     type: image
     integration: ttrahan-dh
     pointer:
-      sourceName: nginx
+      sourceName: ttrahan/kube-example
     seed:
-      versionName: 1.7.9
+      versionName: master.1
 
 ################################
 
