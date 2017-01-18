@@ -16,5 +16,5 @@ jobs:
       - IN: params-sample-test-kube
       - IN: int-aws
       - TASK:
-        - script: ./install.sh
-        - script: ./deploy.sh
+        - script: ./pipeline/install.sh
+        - script: ./pipeline/deploy.sh

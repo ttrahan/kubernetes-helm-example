@@ -11,7 +11,7 @@ env:
     - DOCKER_HUB_URL=ttrahan # {account name}
     # - AMAZON_ECR_URL=288971733297.dkr.ecr.us-east-1.amazonaws.com # {AWS account ID}.dkr.ecr.us-east-1
     # - QUAY_URL="quay.io/ttrahan" # quay.io/{account name}
-    # - GOOGLE_GCR_URL=gcr.io/shippable-gke # gcr.io/{project name}
+    # - GOOGLE_GCR_URL=gcr.io/shippable-gke # gcr.io/{project name} 
 
 build:
   ci:
