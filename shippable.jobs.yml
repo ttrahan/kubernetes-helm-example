@@ -14,6 +14,7 @@ jobs:
       - IN: img-opts-sample
       - IN: params-global
       - IN: params-sample-test
+      - IN: int-aws
       - TASK:
         - script: ./install.sh
         - script: ./deploy.sh

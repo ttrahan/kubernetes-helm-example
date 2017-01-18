@@ -11,7 +11,7 @@ env:
     - DOCKER_HUB_URL=ttrahan # {account name}
     # - AMAZON_ECR_URL=288971733297.dkr.ecr.us-east-1.amazonaws.com # {AWS account ID}.dkr.ecr.us-east-1
     # - QUAY_URL="quay.io/ttrahan" # quay.io/{account name}
-    - GOOGLE_GCR_URL=gcr.io/shippable-gke # gcr.io/{project name}
+    # - GOOGLE_GCR_URL=gcr.io/shippable-gke # gcr.io/{project name}
 
 build:
   ci:
@@ -32,9 +32,9 @@ build:
     # - docker tag ttrahan/$REPO:$BRANCH.$BUILD_NUMBER $QUAY_URL/$REPO:$BRANCH.$BUILD_NUMBER
     # - docker push $QUAY_URL/$REPO:$BRANCH.$BUILD_NUMBER
 
-    # Push to GCR.io
-    - docker tag ttrahan/$REPO:$BRANCH.$BUILD_NUMBER $GOOGLE_GCR_URL/$REPO:$BRANCH.$BUILD_NUMBER
-    - docker push $GOOGLE_GCR_URL/$REPO:$BRANCH.$BUILD_NUMBER
+    # # Push to GCR.io
+    # - docker tag ttrahan/$REPO:$BRANCH.$BUILD_NUMBER $GOOGLE_GCR_URL/$REPO:$BRANCH.$BUILD_NUMBER
+    # - docker push $GOOGLE_GCR_URL/$REPO:$BRANCH.$BUILD_NUMBER
 
 
 integrations:
@@ -45,11 +45,11 @@ integrations:
       type: docker
     # - integrationName: ttrahan-quay
     #   type: quay.io
-    - integrationName: ttrahan-gcr
-      type: gcr
+    # - integrationName: ttrahan-gcr
+    #   type: gcr
 
   notifications:
-    - integrationName: trigger-img-sample
+    - integrationName: trigger-img-sample-kube
       type: webhook
       payload:
         - versionName=$BRANCH.$BUILD_NUMBER

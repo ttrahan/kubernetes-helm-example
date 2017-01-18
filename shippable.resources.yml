@@ -5,9 +5,9 @@ resources:
 ################################
 
 # Integration to that stores AWS credentials
-  - name: int-bastion
+  - name: int-aws
     type: integration
-    integration: ttrahan-bastion
+    integration: ttrahan-aws
 
 ################################
 
