@@ -12,7 +12,7 @@ resources:
 ################################
 
 # Docker Image
-  - name: img-sample-ayeaye
+  - name: img-sample-kube
     type: image
     integration: ttrahan-dh
     pointer:

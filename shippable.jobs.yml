@@ -10,10 +10,10 @@ jobs:
   - name: kube-deploy-test-sample
     type: runSh
     steps:
-      - IN: img-sample
-      - IN: img-opts-sample
-      - IN: params-global
-      - IN: params-sample-test
+      - IN: img-sample-kube
+      - IN: img-opts-sample-kube
+      - IN: params-global-kube
+      - IN: params-sample-test-kube
       - IN: int-aws
       - TASK:
         - script: ./install.sh
