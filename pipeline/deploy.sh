@@ -11,14 +11,14 @@ echo "deploying to Kubernetes cluster..."
 kubectl config use-context useast1.dev.example-kube-cluster.com
 
 # for each yaml template, replace environment variables with values
-for file in pipeline/deployTemplates/*.yaml; do
+for file in $GIT_REPO/pipeline/deployTemplates/*.yaml; do
   TEMPLATE=$file
   DEST=$(echo $(basename $file) | sed 's/-template//')
   envsubst < $TEMPLATE > pipeline/deploySpecs/$DEST
 done;
 
 # for each deploySpec, execute deployment to Kube cluster
-for file in pipeline/deploySpecs/*.yaml; do
+for file in $GIT_REPO/pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
   baseFile=${file##*/}
   deploymentName=${baseFile%.yaml}-$CI_ENVIRONMENT_NAME
