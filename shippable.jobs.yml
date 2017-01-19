@@ -16,7 +16,5 @@ jobs:
       - IN: img-opts-sample-kube
       - IN: params-sample-test-kube
       - TASK:
-
-        - script: cd /build/IN/repo-sample-kube/gitRepo
-        - script: . ./prepEnvironment.sh repo-sample-kube params-sample-test-kube int-aws
-        - script: . ./pipeline/deploy.sh
+        - script: ./build/IN/repo-sample-kube/gitRepo/prepEnvironment.sh repo-sample-kube params-sample-test-kube int-aws
+        - script: ./build/IN/repo-sample-kube/gitRepo/pipeline/deploy.sh
