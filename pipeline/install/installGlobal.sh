@@ -4,8 +4,8 @@
 
 echo "installing Linux tools..."
 
-DISTRO=alpine
-# DISTRO=ubuntu
+# DISTRO=alpine
+DISTRO=ubuntu
 
 # adjust for distro and export variables via .bash_profile for new shells
 if [ $DISTRO == ubuntu ]; then

@@ -6,7 +6,7 @@ echo "installing AWS CLI..."
 if [[ ! -d ~/.aws ]]; then
   mkdir ~/.aws
 fi
-echo -e "[gitlabCi]\naws_access_key_id=$AWS_ACCESS_KEY_ID\naws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
+echo -e "[gitlabCi]\naws_access_key_id=$aws_access_key_id\naws_secret_access_key=$aws_secret_access_key" >> ~/.aws/credentials
 export AWS_DEFAULT_PROFILE=gitlabCi
 
 # install AWS CLI
