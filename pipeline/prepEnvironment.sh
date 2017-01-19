@@ -1,7 +1,9 @@
 #! /bin/sh -e
 
+# location of source files referenced in this script
 GIT_REPO="/build/IN/repo-sample-kube/gitRepo/"
-# assign parameters
+
+# assign parameters passed into this script
 JOB=$1
 SCRIPT_REPO=$2
 PARAMS_RESOURCE=$3
@@ -21,13 +23,12 @@ done
 # install shell tools required
 install_ShellTools
 
-# source inputs ('IN:'s from shippable.jobs.yml) to job
 # process inputs into environment
 # get_previous_statefile $JOB
 # get_params $PARAMS_RESOURCE
 # get_integration $INTEGRATION
-get_image $INTEGRATION
+get_image $IMAGE
 
 # install required CLIs
 install_AwsCli
-installKubectlCli
+install_KubectlCli

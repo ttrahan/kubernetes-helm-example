@@ -1,8 +1,8 @@
 #! /bin/bash
 
 # Extract params data
-echo -e "\n*** extracting image information ***"
 get_image() {
+  echo -e "\n*** extracting image information ***"
   local IMAGE_FILE="./IN/$1/version.json"
   cat $IMAGE_FILE
   if [ -f "$IMAGE_FILE" ]; then

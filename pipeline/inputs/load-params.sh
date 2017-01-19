@@ -1,8 +1,8 @@
 #! /bin/bash
 
 # Extract params data
-echo -e "\n*** extracting params information ***"
 get_params() {
+  echo -e "\n*** extracting params information ***"
   local PARAMS_FILE="./IN/$1/version.json"
   if [ -f "$PARAMS_FILE" ]; then
     PARAMS_VALUES=$(jq -r '.version.propertyBag.params' $PARAMS_FILE)
