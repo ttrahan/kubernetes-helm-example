@@ -54,6 +54,14 @@ if [[ ! $(which aws) ]]; then
   fi
 fi
 
+# add Kube config
+if [[ ! -d ~/.aws ]]; then
+  mkdir ~/.kube
+fi
+
+# copy shared credentials from S3 bucket to job node
+aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
+
 # install Kubernetes CLI
 if [[ ! $(which kubectl) ]]; then
   curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
