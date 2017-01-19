@@ -9,6 +9,6 @@ get_image() {
     export TAG=$(jq -r '.version.version.versionName' $IMAGE_FILE)
     echo "loaded image information"
   else
-    echo "no params file exists"
+    echo "no image information exists"
   fi
 }

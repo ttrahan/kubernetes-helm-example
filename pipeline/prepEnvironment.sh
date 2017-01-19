@@ -32,10 +32,12 @@ JOB=$1
 SCRIPT_REPO=$2
 PARAMS_RESOURCE=$3
 INTEGRATION=$4
+IMAGE=$5
 # process inputs into environment
 get_previous_statefile $JOB
 get_params $PARAMS_RESOURCE
 get_integration $INTEGRATION
+get_image $INTEGRATION
 
 
 # install AWS CLI
