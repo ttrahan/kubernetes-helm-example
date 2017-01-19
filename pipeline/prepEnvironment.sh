@@ -11,12 +11,7 @@ INTEGRATION=$4
 IMAGE=$5
 
 # source functions used in this script
-# functions to prepare inputs for environment
-for f in $GIT_REPO/pipeline/inputs/* ; do
-  source $f ;
-done
-# functions to install required tools
-for f in $GIT_REPO/pipeline/install/* ; do
+for f in $GIT_REPO/pipeline/scriptFunctions/* ; do
   source $f ;
 done
 
