@@ -17,63 +17,65 @@ get_previous_statefile $JOB
 get_params $PARAMS_RESOURCE
 get_integration $INTEGRATION
 
+echo "aws_access_key_id - "$aws_access_key_id
+echo "environment - "$ENVIRONMENT
+
 # install linux tools
-. $GIT_REPO/pipeline/install/installGlobal.sh
+# . $GIT_REPO/pipeline/install/installGlobal.sh
+echo "installing Linux tools..."
+# DISTRO=alpine
+DISTRO=ubuntu
+# adjust for distro and export variables via .bash_profile for new shells
+if [ $DISTRO == ubuntu ]; then
+  export TOOL="sudo apt-get"
+  export INSTALL_CMD="apt-get install"
+elif [ $DISTRO == alpine ]; then
+  export TOOL="apk"
+  export INSTALL_CMD="apk add"
+else
+  echo "Linux distro not supported"
+  # exit
+fi
+# update the package index and install tools
+$TOOL update
+$INSTALL_CMD gettext curl sudo bash
 
 # install AWS CLI
-. $GIT_REPO/pipeline/install/installAwsCli.sh
+# . $GIT_REPO/pipeline/install/installAwsCli.sh
+echo "installing AWS CLI..."
+# add AWS credentials
+if [[ ! -d ~/.aws ]]; then
+  mkdir ~/.aws
+fi
+echo -e "[shippable]\naws_access_key_id=$aws_access_key_id\naws_secret_access_key=$aws_secret_access_key" >> ~/.aws/credentials
+export AWS_DEFAULT_PROFILE=shippable
+# install Python and PIP if not installed
+if [[ ! $(which python) ]]; then
+  sudo $INSTALL_CMD python
+  curl -O https://bootstrap.pypa.io/get-pip.py
+  sudo python get-pip.py
+fi
+# install AWS CLI
+if [[ ! $(which aws) ]]; then
+  sudo $(which pip) install awscli
+  if [[ $(aws help) ]]; then
+    echo "AWS CLI installed successfully"
+  fi
+fi
 
 # install Kubectl CLI
-echo $aws_access_key_id
-. $GIT_REPO/pipeline/install/installKubeCli.sh
-
-# # install all dependencies required to execute deployment
-# # DISTRO=alpine
-# DISTRO=ubuntu
-# if [ $DISTRO == ubuntu ]; then
-#   TOOL="sudo apt-get"
-#   INSTALL_CMD="apt-get install"
-# elif [ $DISTRO == alpine ]; then
-#   TOOL="apk"
-#   INSTALL_CMD="apk add"
-# else
-#   echo "Linux distro not supported"
-#   # exit
-# fi
-# # update the package index and install linux tools
-# $TOOL update
-# $INSTALL_CMD gettext curl sudo bash jq unzip
-#
-# # # environment variables (use after 1/21/2016 release)
-# # export AWS_ACCESS_KEY_ID=$INTAWS_INTEGRATION_AWS_ACCESS_KEY_ID
-# # export AWS_SECRET_ACCESS_KEY=$INTAWS_INTEGRATION_AWS_SECRET_ACCESS_KEY
-#
-# # install AWS CLI
-# # install Python and PIP if not installed
-# if [[ ! $(which python) ]]; then
-#   sudo $INSTALL_CMD python
-#   curl -O https://bootstrap.pypa.io/get-pip.py
-#   sudo python get-pip.py
-# fi
-# # install AWS CLI
-# if [[ ! $(which aws) ]]; then
-#   sudo $(which pip) install awscli
-#   if [[ $(aws help) ]]; then
-#     echo "AWS CLI installed successfully"
-#   fi
-# fi
-#
-# # add Kube config
-# if [[ ! -d ~/.aws ]]; then
-#   mkdir ~/.kube
-# fi
-#
-# # copy shared credentials from S3 bucket to job node
-# aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
-#
-# # install Kubernetes CLI
-# if [[ ! $(which kubectl) ]]; then
-#   curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-#   chmod +x ./kubectl
-#   sudo mv ./kubectl /usr/local/bin/kubectl
-# fi
+# . $GIT_REPO/pipeline/install/installKubeCli.sh
+echo "installing kubectl CLI..."
+# add Kube config
+if [[ ! -d ~/.kube ]]; then
+  mkdir ~/.kube
+fi
+echo "directory created..."
+# copy shared credentials from S3 bucket to job node
+aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
+# install Kubernetes CLI
+if [[ ! $(which kubectl) ]]; then
+  curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+  chmod +x ./kubectl
+  sudo mv ./kubectl /usr/local/bin/kubectl
+fi
