@@ -19,8 +19,8 @@ get_params $PARAMS_RESOURCE
 get_integration $INTEGRATION
 
 # install all dependencies required to execute deployment
-DISTRO=alpine
-# DISTRO=ubuntu
+# DISTRO=alpine
+DISTRO=ubuntu
 if [ $DISTRO == ubuntu ]; then
   TOOL="sudo apt-get"
   INSTALL_CMD="apt-get install"
