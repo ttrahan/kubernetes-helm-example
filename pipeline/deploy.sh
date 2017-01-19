@@ -13,6 +13,8 @@ kubectl config use-context useast1.dev.example-kube-cluster.com
 # for each yaml template, replace environment variables with values
 for file in $GIT_REPO/pipeline/deployTemplates/*.yaml; do
   TEMPLATE=$file
+  echo 'docker_repo_2 - '$DOCKER_REPOSITORY
+  echo 'docker_tag_2 - '$TAG
   DEST=$(echo $(basename $file) | sed 's/-template//')
   envsubst < $TEMPLATE > $GIT_REPO/pipeline/deploySpecs/$DEST
   cat $GIT_REPO/pipeline/deploySpecs/$DEST
