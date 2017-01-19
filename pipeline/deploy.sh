@@ -20,7 +20,7 @@ for file in $GIT_REPO/pipeline/deployTemplates/*.yaml; do
   envsubst < $TEMPLATE > $GIT_REPO/pipeline/deploySpecs/$DEST.yaml
 done;
 
-# # for each deploySpec, execute deployment to Kube cluster
+# for each deploySpec, execute deployment to Kube cluster
 for file in $GIT_REPO/pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
   baseFile=${file##*/}
@@ -33,3 +33,7 @@ for file in $GIT_REPO/pipeline/deploySpecs/*.yaml; do
     sleep 1
   done
 done;
+
+# save State to be used in subsequent jobs or next time this job runs. Pass variable names or files (with path) as parameters
+save_state_variables DOCKER_REPOSITORY TAG
+save_state_files /build/IN/img-sample-kube/version.json
