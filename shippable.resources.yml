@@ -27,7 +27,7 @@ resources:
     type: gitRepo
     integration: ttrahan-gh
     pointer:
-      sourceName: ttrahan/heroku-example
+      sourceName: ttrahan/kube-example
       branch: master
 
 ################################
