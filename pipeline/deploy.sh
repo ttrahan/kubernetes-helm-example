@@ -20,17 +20,18 @@ for file in $GIT_REPO/pipeline/deployTemplates/*.yaml; do
   cat $GIT_REPO/pipeline/deploySpecs/$DEST
 done;
 
-# for each deploySpec, execute deployment to Kube cluster
-ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')
-for file in $GIT_REPO/pipeline/deploySpecs/*.yaml; do
-  echo "processing "$file
-  baseFile=${file##*/}
-  deploymentName=${baseFile%.yaml}-$ENVIRONMENT
-  kubectl apply -f $file --record
-  STATUS=""
-  while [[ "$STATUS" != *"successfully rolled out"* ]]; do
-    STATUS=$(kubectl rollout status deployments $deploymentName)
-    echo -e $STATUS\n
-    sleep 1
-  done
-done;
+# # for each deploySpec, execute deployment to Kube cluster
+# # specific to the environment
+# ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')
+# for file in $GIT_REPO/pipeline/deploySpecs/*.yaml; do
+#   echo "processing "$file
+#   baseFile=${file##*/}
+#   deploymentName=${baseFile%.yaml}-$ENVIRONMENT
+#   kubectl apply -f $file --record
+#   STATUS=""
+#   while [[ "$STATUS" != *"successfully rolled out"* ]]; do
+#     STATUS=$(kubectl rollout status deployments $deploymentName)
+#     echo -e $STATUS\n
+#     sleep 1
+#   done
+# done;
