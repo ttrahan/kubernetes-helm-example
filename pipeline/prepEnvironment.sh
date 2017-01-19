@@ -15,8 +15,8 @@ INTEGRATION=$4
 
 # execute
 get_previous_statefile $JOB
-load_params $PARAMS_RESOURCE
-extract_integration $INTEGRATION
+get_params $PARAMS_RESOURCE
+get_integration $INTEGRATION
 
 # install all dependencies required to execute deployment
 DISTRO=alpine
