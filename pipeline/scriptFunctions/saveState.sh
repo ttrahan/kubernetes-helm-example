@@ -15,6 +15,7 @@ save_state_files() {
   STATE_SAVE_LOCATION=/build/state/
   NUM_PARAMS=$#
   for file in {1..$NUM_PARAMS}; do
+    echo "file - "$file
     FILE_TO_SAVE=$file
     cp $file $STATE_SAVE_LOCATION
   done

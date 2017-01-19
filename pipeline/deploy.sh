@@ -29,7 +29,7 @@ for file in $GIT_REPO/pipeline/deploySpecs/*.yaml; do
   STATUS=""
   while [[ "$STATUS" != *"successfully rolled out"* ]]; do
     STATUS=$(kubectl rollout status deployments $deploymentName)
-    echo -e $STATUS\n
+    echo -e $STATUS"\n"
     sleep 1
   done
 done;
