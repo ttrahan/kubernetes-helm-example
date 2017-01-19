@@ -1,5 +1,7 @@
 #! /bin/sh -e
 
+$pwd
+
 # source inputs ('IN:'s from shippable.jobs.yml) to job
 for f in inputs/* ; do
   source $f ;
