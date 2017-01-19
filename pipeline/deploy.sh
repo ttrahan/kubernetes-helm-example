@@ -10,7 +10,7 @@ echo "deploying to Kubernetes cluster..."
 # set context for Kube deployment
 kubectl config use-context useast1.dev.example-kube-cluster.com
 
-# for each yaml template, replace environment variables with values
+# for each yaml template, generate an updated deploySpec
 ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')
 for file in $GIT_REPO/pipeline/deployTemplates/*.yaml; do
   TEMPLATE=$file
@@ -20,14 +20,11 @@ for file in $GIT_REPO/pipeline/deployTemplates/*.yaml; do
   envsubst < $TEMPLATE > $GIT_REPO/pipeline/deploySpecs/$DEST.yaml
 done;
 
-ls -f $GIT_REPO/pipeline/deploySpecs/*
-
 # # for each deploySpec, execute deployment to Kube cluster
-# specific to the environment
 for file in $GIT_REPO/pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
   baseFile=${file##*/}
-  deploymentName=${baseFile%.yaml}-$ENVIRONMENT
+  deploymentName=${baseFile%.yaml}
   kubectl apply -f $file --record
   STATUS=""
   while [[ "$STATUS" != *"successfully rolled out"* ]]; do
