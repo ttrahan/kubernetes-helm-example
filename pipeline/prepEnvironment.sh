@@ -2,6 +2,8 @@
 
 GIT_REPO="/build/IN/repo-sample-kube/gitRepo/"
 
+echo "working directory - "$(pwd)
+
 # source inputs ('IN:'s from shippable.jobs.yml) to job
 for f in $GIT_REPO/pipeline/inputs/* ; do
   source $f ;
@@ -13,7 +15,7 @@ PARAMS_RESOURCE=$3
 INTEGRATION=$4
 echo "JOB variable - "$JOB
 echo "SCRIPT_REPO variable - "$SCRIPT_REPO
-echo "PARAMS variable - "$PARAMS
+echo "PARAMS variable - "$PARAMS_RESOURCE
 echo "INTEGRATION variable - "$INTEGRATION
 # process inputs into environment
 get_previous_statefile $JOB
