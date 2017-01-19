@@ -19,6 +19,7 @@ for file in $GIT_REPO/pipeline/deployTemplates/*.yaml; do
 done;
 
 # for each deploySpec, execute deployment to Kube cluster
+ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')
 for file in $GIT_REPO/pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
   baseFile=${file##*/}

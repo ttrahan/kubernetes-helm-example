@@ -49,7 +49,7 @@ resources:
     type: params
     version:
       params:
-        ENVIRONMENT: "TEST"
+        ENVIRONMENT: "test"
         PORT: 80
 
 # # env vars - Prod environment
