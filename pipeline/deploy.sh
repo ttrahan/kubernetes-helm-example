@@ -15,6 +15,7 @@ for file in $GIT_REPO/pipeline/deployTemplates/*.yaml; do
   TEMPLATE=$file
   DEST=$(echo $(basename $file) | sed 's/-template//')
   envsubst < $TEMPLATE > $GIT_REPO/pipeline/deploySpecs/$DEST
+  ls -l $GIT_REPO/pipeline/deploySpecs
 done;
 
 # for each deploySpec, execute deployment to Kube cluster
