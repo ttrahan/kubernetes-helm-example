@@ -1,6 +1,7 @@
 #! /bin/sh -e
 
 echo "working directory - "$(pwd)
+ls -d -1 $PWD/**/**/**/*
 GIT_REPO="/build/IN/repo-sample-kube/gitRepo/"
 
 # source inputs ('IN:'s from shippable.jobs.yml) to job
