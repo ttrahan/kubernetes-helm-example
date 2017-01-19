@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: sample-node-ayeaye
-        image: ttrahan/kube-example:
+        image: :
         ports:
         - containerPort: 80
         env:

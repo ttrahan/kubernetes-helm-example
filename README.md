@@ -18,7 +18,9 @@ kops update cluster useast1.dev.example-kube-cluster.com --yes
 To add a Kube UI:
 ```
 kubectl create -f https://raw.githubusercontent.com/kubernetes/kops/master/addons/kubernetes-dashboard/v1.4.0.yaml
+kubectl proxy
 ```
+Then navigate to http://127.0.0.1:8001/ui
 
 Delete the cluster:
 ```
