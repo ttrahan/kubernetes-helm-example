@@ -5,7 +5,6 @@ jobs:
 ################################
 
 # add pipeline workflow
-
 # TEST deployment to Kube cluster on AWS
   - name: kube-deploy-test-sample
     type: runSh
