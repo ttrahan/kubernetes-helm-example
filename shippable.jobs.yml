@@ -17,7 +17,6 @@ jobs:
       - IN: params-sample-test-kube
       - TASK:
         - script: ls -l /build/IN/int-aws
-        - script: ls -l /build/IN/int-aws/integration
         - script: cd /build/IN/repo-sample-kube/gitRepo
         - script: . pipeline/prepEnvironment.sh repo-sample-kube params-sample-test-kube int-aws
         - script: . pipeline/deploy.sh
