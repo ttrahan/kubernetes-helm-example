@@ -3,7 +3,7 @@
 GIT_REPO="/build/IN/repo-sample-kube/gitRepo/"
 
 # source inputs ('IN:'s from shippable.jobs.yml) to job
-for f in /build/IN/repo-sample-kube/gitRepo/pipeline/inputs/* ; do
+for f in $GIT_REPO/pipeline/inputs/* ; do
   source $f ;
 done
 # input parameters
