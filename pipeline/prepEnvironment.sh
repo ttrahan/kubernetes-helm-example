@@ -11,7 +11,8 @@ JOB=$1
 SCRIPT_REPO=$2
 PARAMS_RESOURCE=$3
 INTEGRATION=$4
-# execute
+echo "INTEGRATION variable - "$INTEGRATION
+# process inputs into environment
 get_previous_statefile $JOB
 get_params $PARAMS_RESOURCE
 get_integration $INTEGRATION
