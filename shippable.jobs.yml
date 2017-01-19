@@ -10,11 +10,13 @@ jobs:
   - name: kube-deploy-test-sample
     type: runSh
     steps:
+      - IN: int-aws
       - IN: img-sample-kube
+      - IN: repo-sample-kube
       - IN: img-opts-sample-kube
       - IN: params-sample-test-kube
-      - IN: int-aws
       - TASK:
-        - script: . /build/IN/repo-sample/gitRepo/deploy.sh repo-sample-kube params-sample-test-kube int-heroku
-        - script: ./pipeline/prepEnvironment.sh
-        - script: ./pipeline/deploy.sh
+
+        - script: cd /build/IN/repo-sample-kube/gitRepo
+        - script: . /prepEnvironment.sh repo-sample-kube params-sample-test-kube int-aws
+        - script: . /pipeline/deploy.sh

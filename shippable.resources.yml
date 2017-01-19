@@ -52,10 +52,10 @@ resources:
         ENVIRONMENT: "TEST"
         PORT: 80
 
-# env vars - Prod environment
-  - name: params-sample-prod-kube
-    type: params
-    version:
-      params:
-        ENVIRONMENT: "PROD"
-        PORT: 80
+# # env vars - Prod environment
+#   - name: params-sample-prod-kube
+#     type: params
+#     version:
+#       params:
+#         ENVIRONMENT: "PROD"
+#         PORT: 80
