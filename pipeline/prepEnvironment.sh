@@ -5,6 +5,28 @@ echo "PWD variable - "$PWD
 ls -d -1 $(pwd)/**/**/**/*
 GIT_REPO="/build/IN/repo-sample-kube/gitRepo/"
 
+
+# install linux tools
+# . $GIT_REPO/pipeline/install/installGlobal.sh
+echo "installing Linux tools..."
+# DISTRO=alpine
+DISTRO=ubuntu
+# adjust for distro and export variables via .bash_profile for new shells
+if [ $DISTRO == ubuntu ]; then
+  export TOOL="sudo apt-get"
+  export INSTALL_CMD="apt-get install"
+elif [ $DISTRO == alpine ]; then
+  export TOOL="apk"
+  export INSTALL_CMD="apk add"
+else
+  echo "Linux distro not supported"
+  # exit
+fi
+# update the package index and install tools
+$TOOL update
+$INSTALL_CMD gettext curl sudo bash jq
+
+
 # source inputs ('IN:'s from shippable.jobs.yml) to job
 for f in $GIT_REPO/pipeline/inputs/* ; do
   source $f ;
@@ -25,25 +47,6 @@ get_integration $INTEGRATION
 echo "aws_access_key_id - "$aws_access_key_id
 echo "environment - "$ENVIRONMENT
 
-# install linux tools
-# . $GIT_REPO/pipeline/install/installGlobal.sh
-echo "installing Linux tools..."
-# DISTRO=alpine
-DISTRO=ubuntu
-# adjust for distro and export variables via .bash_profile for new shells
-if [ $DISTRO == ubuntu ]; then
-  export TOOL="sudo apt-get"
-  export INSTALL_CMD="apt-get install"
-elif [ $DISTRO == alpine ]; then
-  export TOOL="apk"
-  export INSTALL_CMD="apk add"
-else
-  echo "Linux distro not supported"
-  # exit
-fi
-# update the package index and install tools
-$TOOL update
-$INSTALL_CMD gettext curl sudo bash
 
 # install AWS CLI
 # . $GIT_REPO/pipeline/install/installAwsCli.sh
@@ -67,6 +70,7 @@ if [[ ! $(which aws) ]]; then
     echo "AWS CLI installed successfully"
   fi
 fi
+
 
 # install Kubectl CLI
 # . $GIT_REPO/pipeline/install/installKubeCli.sh

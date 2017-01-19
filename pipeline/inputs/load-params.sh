@@ -4,6 +4,7 @@
 echo -e "\n*** extracting params information ***"
 get_params() {
   local PARAMS_FILE="./IN/$1/version.json"
+  echo "pulling integration file from "$INTEGRATION_FILE
   if [ -f "$PARAMS_FILE" ]; then
     PARAMS_VALUES=$(jq -r '.version.propertyBag.params' $PARAMS_FILE)
     PARAMS_LENGTH=$(echo $PARAMS_VALUES | jq '. | length')

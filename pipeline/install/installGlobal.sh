@@ -21,4 +21,4 @@ fi
 
 # update the package index and install tools
 $TOOL update
-$INSTALL_CMD gettext curl sudo bash
+$INSTALL_CMD gettext curl sudo bash jq
