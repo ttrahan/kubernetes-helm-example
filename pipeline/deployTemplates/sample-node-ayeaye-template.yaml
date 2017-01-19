@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: sample-node-ayeaye
-        image: $DOCKER_REGISTRY_URL/$REPO:$TAG
+        image: DOCKER_REPOSITORY:$TAG
         ports:
         - containerPort: 80
         env:
@@ -33,4 +33,4 @@ spec:
             # memory: $IMGOPTSSAMPLE_VERSION_MEMORY
             # cpu: $IMGOPTSSAMPLE_VERSION_CPUSHARES
       imagePullSecrets:
-      - name: ttrahan-kube
+      - name: 
