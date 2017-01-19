@@ -3,7 +3,7 @@
 $pwd
 
 # source inputs ('IN:'s from shippable.jobs.yml) to job
-for f in pipeline/inputs/* ; do
+for f in /build/IN/repo-sample-kube/gitRepo/pipeline/inputs/* ; do
   source $f ;
 done
 
