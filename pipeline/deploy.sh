@@ -14,14 +14,14 @@ kubectl config use-context useast1.dev.example-kube-cluster.com
 for file in $GIT_REPO/pipeline/deployTemplates/*.yaml; do
   TEMPLATE=$file
   DEST=$(echo $(basename $file) | sed 's/-template//')
-  envsubst < $TEMPLATE > pipeline/deploySpecs/$DEST
+  envsubst < $TEMPLATE > $GIT_REPO/pipeline/deploySpecs/$DEST
 done;
 
 # for each deploySpec, execute deployment to Kube cluster
 for file in $GIT_REPO/pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
   baseFile=${file##*/}
-  deploymentName=${baseFile%.yaml}-$CI_ENVIRONMENT_NAME
+  deploymentName=${baseFile%.yaml}-$ENVIRONMENT
   kubectl apply -f $file --record
   STATUS=""
   while [[ "$STATUS" != *"successfully rolled out"* ]]; do
