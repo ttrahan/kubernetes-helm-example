@@ -17,13 +17,13 @@ get_params $PARAMS_RESOURCE
 get_integration $INTEGRATION
 
 # install linux tools
-. install/installGlobal.sh
+. /build/IN/repo-sample-kube/gitRepo/install/installGlobal.sh
 
 # install AWS CLI
-. install/installAwsCli.sh
+. /build/IN/repo-sample-kube/gitRepo/install/installAwsCli.sh
 
 # install Kubectl CLI
-. install/installKubeCli.sh
+. /build/IN/repo-sample-kube/gitRepo/install/installKubeCli.sh
 
 # # install all dependencies required to execute deployment
 # # DISTRO=alpine
