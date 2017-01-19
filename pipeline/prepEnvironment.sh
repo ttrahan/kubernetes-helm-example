@@ -1,7 +1,7 @@
 #! /bin/sh -e
 
 # source inputs ('IN:'s from shippable.jobs.yml) to job
-for f in pipeline/helpers/* ; do
+for f in inputs/* ; do
   source $f ;
 done
 
