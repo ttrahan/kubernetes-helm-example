@@ -22,6 +22,16 @@ resources:
 
 ################################
 
+# application code
+  - name: repo-sample-kube
+    type: gitRepo
+    integration: ttrahan-gh
+    pointer:
+      sourceName: ttrahan/heroku-example
+      branch: master
+
+################################
+
 # TEST resources
 
 # Docker Image Options
@@ -33,13 +43,6 @@ resources:
       portMappings:
         - 80:80
       publishAllPorts : true
-
-# env vars - Global
-  - name: params-global-kube
-    type: params
-    version:
-      params:
-        KOPS_STATE_STORE: "s3://clusters.example-kube-cluster.com/demo"
 
 # env vars - Test environment
   - name: params-sample-test-kube

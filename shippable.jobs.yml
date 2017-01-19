@@ -12,9 +12,9 @@ jobs:
     steps:
       - IN: img-sample-kube
       - IN: img-opts-sample-kube
-      - IN: params-global-kube
       - IN: params-sample-test-kube
       - IN: int-aws
       - TASK:
-        - script: ./pipeline/install.sh
+        - script: . /build/IN/repo-sample/gitRepo/deploy.sh repo-sample-kube params-sample-test-kube int-heroku
+        - script: ./pipeline/prepEnvironment.sh
         - script: ./pipeline/deploy.sh

@@ -1,10 +1,24 @@
 #! /bin/sh -e
 
-# install all dependencies required to execute deployment
+# source inputs ('IN:'s from shippable.jobs.yml) to job
+for f in pipeline/helpers/* ; do
+  source $f ;
+done
 
+# input parameters
+JOB=$1
+SCRIPT_REPO=$2
+PARAMS_RESOURCE=$3
+INTEGRATION=$4
+
+# execute
+extract_previous_state $JOB
+load_params $PARAMS_RESOURCE
+extract_integration $INTEGRATION
+
+# install all dependencies required to execute deployment
 DISTRO=alpine
 # DISTRO=ubuntu
-
 if [ $DISTRO == ubuntu ]; then
   TOOL="sudo apt-get"
   INSTALL_CMD="apt-get install"
@@ -15,14 +29,13 @@ else
   echo "Linux distro not supported"
   # exit
 fi
-
-# environment variables
-export AWS_ACCESS_KEY_ID=$INTAWS_INTEGRATION_AWS_ACCESS_KEY_ID
-export AWS_SECRET_ACCESS_KEY=$INTAWS_INTEGRATION_AWS_SECRET_ACCESS_KEY
-
-# update the package index and install tools
+# update the package index and install linux tools
 $TOOL update
-$INSTALL_CMD gettext curl sudo bash
+$INSTALL_CMD gettext curl sudo bash jq unzip
+
+# # environment variables (use after 1/21/2016 release)
+# export AWS_ACCESS_KEY_ID=$INTAWS_INTEGRATION_AWS_ACCESS_KEY_ID
+# export AWS_SECRET_ACCESS_KEY=$INTAWS_INTEGRATION_AWS_SECRET_ACCESS_KEY
 
 # install AWS CLI
 # install Python and PIP if not installed
