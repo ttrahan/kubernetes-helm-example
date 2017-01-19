@@ -11,12 +11,14 @@ JOB=$1
 SCRIPT_REPO=$2
 PARAMS_RESOURCE=$3
 INTEGRATION=$4
+echo "JOB variable - "$JOB
+echo "SCRIPT_REPO variable - "$SCRIPT_REPO
+echo "PARAMS variable - "$PARAMS
 echo "INTEGRATION variable - "$INTEGRATION
 # process inputs into environment
 get_previous_statefile $JOB
 get_params $PARAMS_RESOURCE
 get_integration $INTEGRATION
-
 echo "aws_access_key_id - "$aws_access_key_id
 echo "environment - "$ENVIRONMENT
 
