@@ -18,5 +18,5 @@ jobs:
       - TASK:
 
         - script: cd /build/IN/repo-sample-kube/gitRepo
-        - script: . /prepEnvironment.sh repo-sample-kube params-sample-test-kube int-aws
-        - script: . /pipeline/deploy.sh
+        - script: ./prepEnvironment.sh repo-sample-kube params-sample-test-kube int-aws
+        - script: ./pipeline/deploy.sh
