@@ -16,7 +16,7 @@ save_state_files() {
   NUM_PARAMS=$#
   for file in {1..$NUM_PARAMS}; do
     FILE_TO_SAVE=$file
-    cp $file $STATEFILE_SAVE_LOCATION
+    cp $file $STATE_SAVE_LOCATION
   done
 }
 
