@@ -20,10 +20,14 @@ for file in $GIT_REPO/pipeline/deployTemplates/*.yaml; do
   envsubst < $TEMPLATE > $GIT_REPO/pipeline/deploySpecs/$DEST.yaml
 done;
 
+ls -f $GIT_REPO/pipeline/deploySpecs/*
+
 # # for each deploySpec, execute deployment to Kube cluster
 # specific to the environment
 for file in $GIT_REPO/pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
+  baseFile=${file##*/}
+  deploymentName=${baseFile%.yaml}-$ENVIRONMENT
   kubectl apply -f $file --record
   STATUS=""
   while [[ "$STATUS" != *"successfully rolled out"* ]]; do
