@@ -3,7 +3,7 @@
 echo "installing kubectl CLI..."
 
 # add Kube config
-if [[ ! -d ~/.aws ]]; then
+if [[ ! -d ~/.kube ]]; then
   mkdir ~/.kube
 fi
 
