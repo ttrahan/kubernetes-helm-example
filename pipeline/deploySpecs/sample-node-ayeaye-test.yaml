@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   # Unique key of the Deployment instance
-  name: sample-node-ayeaye
+  name: sample-node-ayeaye-
 spec:
   # 3 Pods should exist at all times.
   replicas: 1
@@ -14,21 +14,21 @@ spec:
         # Apply this label to pods and default
         # the Deployment label selector to this value
         app: sample-node-ayeaye
-        env: dev
+        env: 
     spec:
       containers:
       - name: sample-node-ayeaye
-        image: registry.gitlab.com/kube-example:master.8624767
+        image: ttrahan/kube-example:
         ports:
         - containerPort: 80
         env:
         - name: ENVIRONMENT
-          value: "dev"
+          value: ""
         - name: PORT
-          value: "80"
+          value: ""
         resources:
           requests:
             memory: 128
             cpu: 0.25
-      imagePullSecrets:
-      - name: gitlab-ttrahan
+            # memory: 
+            # cpu: 
