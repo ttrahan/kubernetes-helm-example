@@ -12,6 +12,7 @@ jobs:
       - IN: int-aws
       - IN: img-sample-kube
       - IN: repo-sample-kube
+        switch: off
       - IN: img-opts-sample-kube
       - IN: params-sample-test-kube
       - TASK:

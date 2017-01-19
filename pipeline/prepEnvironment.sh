@@ -14,7 +14,7 @@ PARAMS_RESOURCE=$3
 INTEGRATION=$4
 
 # execute
-extract_previous_state $JOB
+get_previous_statefile $JOB
 load_params $PARAMS_RESOURCE
 extract_integration $INTEGRATION
 

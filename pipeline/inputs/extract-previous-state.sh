@@ -11,4 +11,3 @@ get_previous_statefile() {
     echo "no previous statefile exists"
   fi
 }
-get_previous_statefile $1
