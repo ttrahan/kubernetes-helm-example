@@ -5,18 +5,15 @@ echo -e "\n*** saving state ***"
 save_state_variables() {
   STATE_SAVE_LOCATION=/build/state/
   NUM_PARAMS=$#
-  for var in {1..$NUM_PARAMS}; do
-    ENV_VAR_TO_SAVE=$var
+  for var in "$@"; do
     echo -e "export "$var"="${!var} >> $STATE_SAVE_LOCATION/variable_state.env
   done
 }
 
 save_state_files() {
-  STATE_SAVE_LOCATION=/build/state/
+  STATE_SAVE_LOCATION=.
   NUM_PARAMS=$#
-  for file in {1..$NUM_PARAMS}; do
-    echo "file - "$file
-    FILE_TO_SAVE=$file
+  for file in "$@"; do
     cp $file $STATE_SAVE_LOCATION
   done
 }
