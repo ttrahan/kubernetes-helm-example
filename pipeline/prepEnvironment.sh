@@ -23,6 +23,7 @@ get_integration $INTEGRATION
 . $GIT_REPO/pipeline/install/installAwsCli.sh
 
 # install Kubectl CLI
+echo $aws_access_key_id
 . $GIT_REPO/pipeline/install/installKubeCli.sh
 
 # # install all dependencies required to execute deployment
