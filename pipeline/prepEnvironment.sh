@@ -1,6 +1,6 @@
 #! /bin/sh -e
 
-$pwd
+GIT_REPO="/build/IN/repo-sample-kube/gitRepo/"
 
 # source inputs ('IN:'s from shippable.jobs.yml) to job
 for f in /build/IN/repo-sample-kube/gitRepo/pipeline/inputs/* ; do
@@ -17,13 +17,13 @@ get_params $PARAMS_RESOURCE
 get_integration $INTEGRATION
 
 # install linux tools
-. /build/IN/repo-sample-kube/gitRepo/install/installGlobal.sh
+. $GIT_REPO/pipeline/install/installGlobal.sh
 
 # install AWS CLI
-. /build/IN/repo-sample-kube/gitRepo/install/installAwsCli.sh
+. $GIT_REPO/pipeline/install/installAwsCli.sh
 
 # install Kubectl CLI
-. /build/IN/repo-sample-kube/gitRepo/install/installKubeCli.sh
+. $GIT_REPO/pipeline/install/installKubeCli.sh
 
 # # install all dependencies required to execute deployment
 # # DISTRO=alpine
