@@ -33,4 +33,4 @@ spec:
             # memory: $IMGOPTSSAMPLE_VERSION_MEMORY
             # cpu: $IMGOPTSSAMPLE_VERSION_CPUSHARES
       imagePullSecrets:
-      - name: 
+      - name: gitlab-ttrahan
