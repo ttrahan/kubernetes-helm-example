@@ -6,8 +6,8 @@ echo "installing AWS CLI..."
 if [[ ! -d ~/.aws ]]; then
   mkdir ~/.aws
 fi
-echo -e "[gitlabCi]\naws_access_key_id=$aws_access_key_id\naws_secret_access_key=$aws_secret_access_key" >> ~/.aws/credentials
-export AWS_DEFAULT_PROFILE=gitlabCi
+echo -e "[shippable]\naws_access_key_id=$aws_access_key_id\naws_secret_access_key=$aws_secret_access_key" >> ~/.aws/credentials
+export AWS_DEFAULT_PROFILE=shippable
 
 # install AWS CLI
 # install Python and PIP if not installed

@@ -7,6 +7,8 @@ if [[ ! -d ~/.kube ]]; then
   mkdir ~/.kube
 fi
 
+echo "directory created..."
+
 # copy shared credentials from S3 bucket to job node
 aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
 
