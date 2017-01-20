@@ -28,7 +28,7 @@ spec:
           value: "$PORT"
         resources:
           requests:
-            memory: 128
-            cpu: 0.25
+            memory: $MEMORY
+            cpu: $CPU
             # memory: $IMGOPTSSAMPLE_VERSION_MEMORY
             # cpu: $IMGOPTSSAMPLE_VERSION_CPUSHARES
