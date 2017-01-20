@@ -23,8 +23,8 @@ install_ShellTools
 # get_previous_statefile $JOB
 # get_params $PARAMS_RESOURCE
 # get_integration $INTEGRATION
-get_image $IMAGE
-# get_docker_options $OPTIONS
+# get_image $IMAGE
+get_docker_options $OPTIONS
 
 # install required CLIs
 # install_AwsCli
