@@ -34,8 +34,8 @@ resources:
 
 # TEST resources
 
-# Docker Image Options
-  - name: img-opts-sample-kube
+# Docker Image Options - Test
+  - name: img-opts-sample-kube-test
     type: dockerOptions
     version:
       memory: 64
@@ -59,3 +59,13 @@ resources:
       params:
         ENVIRONMENT: "PROD"
         PORT: 80
+
+# Docker Image Options - Prod
+  - name: img-opts-sample-kube-prod
+    type: dockerOptions
+    version:
+      memory: 128
+      cpuShares: ".5"
+      portMappings:
+        - 80:80
+      publishAllPorts : true
