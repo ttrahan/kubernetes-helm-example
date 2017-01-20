@@ -8,7 +8,7 @@ JOB=$1
 SCRIPT_REPO=$2
 PARAMS_RESOURCE=$3
 INTEGRATION=$4
-IMAGE=$5
+IMAGE=$5 # will come from either image resource or predecessor deploy job
 OPTIONS=$6
 
 # source functions used in this script
