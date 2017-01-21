@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: sample-node-ayeaye
-        image: $DOCKER_REPOSITORY:$TAG
+        image: $DOCKER_REPOSITORY_SAMPLE:$TAG_SAMPLE
         ports:
         - containerPort: 80
         env:
