@@ -5,7 +5,7 @@ A simple Node.js application with deployment to a Kubernetes cluster running on 
 Instructions for launching the cluster:
 https://kubernetes.io/docs/getting-started-guides/kops/
 
-Build the cluster configuration:
+Build the cluster configuration (replace the zone and cluster name with your values):
 ```
 kops create cluster --zones=us-east-1c useast1.dev.example-kube-cluster.com
 ```
