@@ -11,24 +11,27 @@ jobs:
     steps:
       - IN: repo-sample-kube
         switch: off
+      - IN: params-test-kube
       - IN: params-sample-test-kube
       - IN: int-aws
       - IN: img-sample-kube
+      - IN: img-nginx
       - IN: img-opts-sample-test-kube
       - TASK:
         - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/prepEnvironment.sh
         - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/deploy.sh
 
-# # add pipeline workflow
-# # PROD deployment to Kube cluster on AWS
-#   - name: kube-deploy-prod-sample
-#     type: runSh
-#     steps:
-#       - IN: kube-deploy-prod-sample
-#         switch: off
-#       - IN: params-sample-prod-kube
-#       - IN: int-aws
-#       - IN: img-opts-sample-prod-kube
-#       - TASK:
-#         - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/prepEnvironmentProd.sh kube-deploy-prod-sample repo-sample-kube params-sample-prod-kube int-aws kube-deploy-test-sample img-opts-sample-kube
-#         - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/deploy.sh
+# add pipeline workflow
+# PROD deployment to Kube cluster on AWS
+  - name: kube-deploy-prod-sample
+    type: runSh
+    steps:
+      - IN: kube-deploy-test-sample
+        switch: off
+      - IN: params-prod-kube
+      - IN: params-sample-prod-kube
+      - IN: int-aws
+      - IN: img-opts-sample-prod-kube
+      - TASK:
+        - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/prepEnvironmentProd.sh
+        - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/deploy.sh

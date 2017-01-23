@@ -17,3 +17,18 @@ save_state_files() {
   done
   echo "files saved to state successfully"
 }
+
+# NEED TO UPDATE THESE TWO SCRIPTS!!!
+# Load state
+echo -e "\n*** loading state ***"
+load_state_variables() {
+  STATE_LOAD_LOCATION=/build/previousState
+  source $STATE_LOAD_LOCATION/variable_state.env
+  echo "variables loaded to state successfully"
+}
+
+load_state_files() {
+  STATE_SAVE_LOCATION=/build/previousState
+  
+  echo "files loaded to state successfully"
+}

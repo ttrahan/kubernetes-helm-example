@@ -10,6 +10,26 @@ resources:
     integration: ttrahan-aws
 
 ################################
+# Nginx component
+
+# Docker Image
+  - name: img-nginx
+    type: image
+    pointer:
+      sourceName: nginx
+    seed:
+      versionName: 1.7.9
+
+################################
+# Sample Node Aye-Aye component
+
+# application code
+  - name: repo-sample-kube
+    type: gitRepo
+    integration: ttrahan-gh
+    pointer:
+      sourceName: ttrahan/kube-example
+      branch: master
 
 # Docker Image
   - name: img-sample-kube
@@ -21,20 +41,16 @@ resources:
       versionName: master.1
 
 ################################
+# TEST environment
 
-# application code
-  - name: repo-sample-kube
-    type: gitRepo
-    integration: ttrahan-gh
-    pointer:
-      sourceName: ttrahan/kube-example
-      branch: master
+# Global env vars - Test environment
+  - name: params-test-kube
+    type: params
+    version:
+      params:
+        ENVIRONMENT: "TEST"
 
-################################
-
-# TEST resources
-
-# Docker Image Options - Test
+# Docker Image Options - Sample Node Aye-Aye component
   - name: img-opts-sample-kube-test
     type: dockerOptions
     version:
@@ -44,23 +60,24 @@ resources:
         - 80:80
       publishAllPorts : true
 
-# env vars - Test environment
+# env vars - Sample Node Aye-Aye component - TEST
   - name: params-sample-test-kube
     type: params
     version:
       params:
-        ENVIRONMENT: "TEST"
         PORT: 80
 
-# env vars - Prod environment
-  - name: params-sample-prod-kube
+################################
+# PROD environment
+
+# Global env vars - Prod environment
+  - name: params-prod-kube
     type: params
     version:
       params:
         ENVIRONMENT: "PROD"
-        PORT: 80
 
-# Docker Image Options - Prod
+# Docker Image Options - Sample Node Aye-Aye component
   - name: img-opts-sample-kube-prod
     type: dockerOptions
     version:

@@ -18,17 +18,15 @@ spec:
     spec:
       containers:
       - name: sample-node-ayeaye
-        image: $DOCKER_REPOSITORY_SAMPLE:$TAG_SAMPLE
+        image: $SAMPLE_IMAGE_URL:$SAMPLE_IMAGE_TAG
         ports:
         - containerPort: 80
         env:
         - name: ENVIRONMENT
           value: "$ENVIRONMENT"
         - name: PORT
-          value: "$PORT"
+          value: "$SAMPLE_PORT"
         resources:
           requests:
-            memory: $MEMORY
-            cpu: $CPU
-            # memory: $IMGOPTSSAMPLE_VERSION_MEMORY
-            # cpu: $IMGOPTSSAMPLE_VERSION_CPUSHARES
+            memory: $SAMPLE_MEMORY
+            cpu: $SAMPLE_CPU

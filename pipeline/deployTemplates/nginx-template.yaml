@@ -14,10 +14,10 @@ spec:
         # Apply this label to pods and default
         # the Deployment label selector to this value
         app: nginx
-        env: $ENVIRONMENT
+        env: $PARAMSTESTKUBE_PARAMS_ENVIRONMENT
     spec:
       containers:
       - name: nginx
-        image: nginx:1.7.9
+        image: $IMGNGINX_POINTER_SOURCENAME:$IMGNGINX_VERSION_VERSIONNAME
         ports:
         - containerPort: 80
