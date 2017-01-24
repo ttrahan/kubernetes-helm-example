@@ -34,6 +34,6 @@ for file in $GIT_REPO/pipeline/deploySpecs/*.yaml; do
   done
 done;
 
-# save State to be used in subsequent jobs or next time this job runs. Pass
-# variable names or files (with path) as parameters
+# # save State to be used in subsequent jobs or next time this job runs. Pass variable names or files (with path) as parameters
 save_state_variables SAMPLE_IMAGE_URL SAMPLE_IMAGE_TAG
+save_state_files /build/IN/img-sample-kube/version.json
