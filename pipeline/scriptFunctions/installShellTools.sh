@@ -2,7 +2,7 @@
 
 # install linux tools
 install_ShellTools() {
-  echo "installing Linux tools..."
+  echo -n "installing Linux tools..."
 
   # toggle DISTRO based on environment used
   # DISTRO=alpine
@@ -22,4 +22,5 @@ install_ShellTools() {
   # update the package index and install tools
   $TOOL update
   $INSTALL_CMD gettext curl sudo bash jq
+  echo "Linux tools installed successfully"
 }

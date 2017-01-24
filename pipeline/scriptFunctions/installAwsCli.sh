@@ -2,7 +2,7 @@
 
 # install AWS CLI
 install_AwsCli() {
-  echo "installing AWS CLI..."
+  echo -n "installing AWS CLI..."
 
   # add AWS credentials
   if [[ ! -d ~/.aws ]]; then
