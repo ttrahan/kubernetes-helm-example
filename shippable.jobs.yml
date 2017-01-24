@@ -17,7 +17,7 @@ jobs:
       - IN: int-kube
       - IN: img-sample-kube
       - IN: img-nginx
-      - IN: img-opts-sample-test-kube
+      - IN: img-opts-sample-kube-test
       - TASK:
         - script: printenv
         - script: echo "INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT" > ~/.kube/config
