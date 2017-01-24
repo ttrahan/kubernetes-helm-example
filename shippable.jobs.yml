@@ -19,7 +19,7 @@ jobs:
       - IN: img-nginx
       - IN: img-opts-sample-kube-test
       - TASK:
-        - script: echo $REPOSAMPLEKUBE_PATH
+        - script: echo "git repo root directory: "$REPOSAMPLEKUBE_PATH
         - script: find $REPOSAMPLEKUBE_PATH/* -type f
         - script: mkdir -p ~/.kube && echo "$INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT" > ~/.kube/config
         - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/prepEnvironment.sh

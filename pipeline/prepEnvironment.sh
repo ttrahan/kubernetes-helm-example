@@ -24,6 +24,7 @@ fi
 
 # source functions used in this script
 for f in $REPOSAMPLEKUBE_PATH/pipeline/scriptFunctions/*.* ; do
+  echo "sourcing "$f" into environment"
   source $f ;
 done
 
