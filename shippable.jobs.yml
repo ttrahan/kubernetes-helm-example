@@ -35,7 +35,7 @@ jobs:
         switch: off
       - IN: params-prod-kube
       - IN: int-aws
-      - IN: img-opts-sample-prod-kube
+      - IN: img-opts-sample-kube-prod
       - TASK:
         - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/prepEnvironmentProd.sh
         - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/deploy.sh

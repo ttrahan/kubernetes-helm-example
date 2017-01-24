@@ -6,7 +6,7 @@ resources:
 
 ################################
 
-  - name: integration-kube
+  - name: int-kube
     type: integration
     integration: ttrahan-kube
 
