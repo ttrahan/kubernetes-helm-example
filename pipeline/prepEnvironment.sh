@@ -32,7 +32,7 @@ install_ShellTools
 
 # install required CLIs
 install_AwsCli
-install_KubectlCli
+# install_KubectlCli
 
 # load previous state
-load_state_variables
+# load_state_variables
