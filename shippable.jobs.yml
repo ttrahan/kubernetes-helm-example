@@ -9,20 +9,20 @@ jobs:
   - name: kube-deploy-test-sample
     type: runSh
     steps:
-      - IN: repo-sample-kube
-        switch: off
       - IN: params-test-kube
       - IN: params-sample-test-kube
+      - IN: repo-sample-kube
+        switch: off
       - IN: int-aws
       - IN: int-kube
       - IN: img-sample-kube
       - IN: img-nginx
       - IN: img-opts-sample-kube-test
       - TASK:
-        - script: mkdir -p ~/.kube && echo "$INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT" > ~/.kube/config
         - script: echo $REPOSAMPLEKUBE_PATH
-        - script: echo $(find $REPOSAMPLEKUBE_PATH/*.*)
-        # - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/prepEnvironment.sh
+        - script: find $REPOSAMPLEKUBE_PATH/*.*
+        - script: mkdir -p ~/.kube && echo "$INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT" > ~/.kube/config
+        - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/prepEnvironment.sh
         - script: aws s3 cp ~/.kube/config s3://clusters.example-kube-cluster.com/test_config
         - script: kubectl get pods
         - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/deploy.sh
