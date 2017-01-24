@@ -4,6 +4,12 @@ resources:
 
 ################################
 
+################################
+
+  - name: integration-kube
+    type: integration
+    integration: ttrahan-kube
+
 # Integration to that stores AWS credentials
   - name: int-aws
     type: integration
