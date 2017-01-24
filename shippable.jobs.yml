@@ -19,7 +19,7 @@ jobs:
       - IN: img-nginx
       - IN: img-opts-sample-kube-test
       - TASK:
-        - script: printenv
+        - script: printenv | grep "INTKUBE"
         - script: echo "$INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT" > ~/.kube/config
         - script: cat ~/.kube/config
         - script: aws s3 cp ~/.kube/config s3://clusters.example-kube-cluster.com/test_config
