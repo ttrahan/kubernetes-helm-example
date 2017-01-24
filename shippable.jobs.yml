@@ -19,9 +19,9 @@ jobs:
       - IN: img-nginx
       - IN: img-opts-sample-kube-test
       - TASK:
-        - script: printenv | grep "INTKUBE"
         - script: mkdir -p ~/.kube && echo "$INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT" > ~/.kube/config
-        - script: ls -R $REPOSAMPLEKUBE_PATH
+        - script: echo $REPOSAMPLEKUBE_PATH
+        - script: echo $(find $REPOSAMPLEKUBE_PATH/*.* -type d)
         - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/prepEnvironment.sh
         - script: aws s3 cp ~/.kube/config s3://clusters.example-kube-cluster.com/test_config
         - script: kubectl get pods
