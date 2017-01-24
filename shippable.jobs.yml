@@ -34,7 +34,6 @@ jobs:
       - IN: kube-deploy-test-sample
         switch: off
       - IN: params-prod-kube
-      - IN: params-sample-prod-kube
       - IN: int-aws
       - IN: img-opts-sample-prod-kube
       - TASK:
