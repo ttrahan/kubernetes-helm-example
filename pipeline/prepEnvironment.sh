@@ -23,7 +23,7 @@ elif [[ -z ${PARAMSPRODKUBE_PARAMS_ENVIRONMENT} ]]; then
 fi
 
 # source functions used in this script
-for f in $REPOSAMPLEKUBE_PATH/pipeline/scriptFunctions/*.* ; do
+for f in $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/scriptFunctions/*.* ; do
   echo "sourcing "$f" into environment"
   source $f ;
 done
