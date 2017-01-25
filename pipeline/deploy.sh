@@ -12,7 +12,7 @@ kubectl config use-context useast1.dev.example-kube-cluster.com
 
 # for each yaml template, generate an updated deploySpec
 ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')
-for file in $GIT_REPO/pipeline/deployTemplates/*.yaml; do
+for file in $REPOSAMPLEKUBE_PATH/pipeline/deployTemplates/*.yaml; do
   TEMPLATE=$file
   baseFile=${file##*/}
   deploymentName=${baseFile%.yaml}-$ENVIRONMENT
@@ -21,7 +21,7 @@ for file in $GIT_REPO/pipeline/deployTemplates/*.yaml; do
 done;
 
 # for each deploySpec, execute deployment to Kube cluster
-for file in $GIT_REPO/pipeline/deploySpecs/*.yaml; do
+for file in $REPOSAMPLEKUBE_PATH/pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
   baseFile=${file##*/}
   deploymentName=${baseFile%.yaml}

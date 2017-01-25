@@ -1,6 +1,6 @@
 resources:
 
-# resources for sample application running on Kubernetes on AWS
+  # resources for sample application running on Kubernetes on AWS
 
 ################################
 
