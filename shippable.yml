@@ -1,10 +1,6 @@
 # Language setting
 language: node_js
 
-branches:
-  only:
-    - master
-
 env:
   global:
     - REPO=kube-example
