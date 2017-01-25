@@ -10,8 +10,14 @@ install_KubectlCli() {
   fi
   echo -n "directory created..."
 
-  # copy shared credentials from S3 bucket to job node
-  aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
+  # Write credentials to ~/.kube/config
+  if [[ -z $INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT ]]; then
+    # from Shippable Kubernetes account integration named as input to job
+    echo "$INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT" > ~/.kube/config
+  else
+    # from S3 bucket
+    aws s3 cp s3://clusters.example-kube-cluster.com/config ~/.kube/config
+  fi
 
   # install Kubernetes CLI
   if [[ ! $(which kubectl) ]]; then
