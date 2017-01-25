@@ -7,11 +7,11 @@ install_KubectlCli() {
   # add Kube config
   if [[ ! -d ~/.kube ]]; then
     mkdir ~/.kube
+    echo -n "directory created..."
   fi
-  echo -n "directory created..."
 
   # Write credentials to ~/.kube/config
-  if [[ -z $INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT ]]; then
+  if [[ ! -z $INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT ]]; then
     # from Shippable Kubernetes account integration named as input to job
     echo "kube config created from shippable integration"
     echo "$INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT" > ~/.kube/config
