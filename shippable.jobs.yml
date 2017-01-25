@@ -21,7 +21,7 @@ jobs:
       - TASK:
         - script: mkdir -p ~/.kube && echo "$INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT" > ~/.kube/config
         - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/prepEnvironment.sh
-        - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deploy.sh
+        # - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deploy.sh
 
 # add pipeline workflow
 # PROD deployment to Kube cluster on AWS
