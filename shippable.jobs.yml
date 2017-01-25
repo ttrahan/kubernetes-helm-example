@@ -4,7 +4,7 @@ jobs:
 
 ################################
 
-# add pipeline workflow
+# add pipeline job
 # TEST deployment to Kube cluster on AWS
   - name: kube-deploy-test-sample
     type: runSh
@@ -22,7 +22,7 @@ jobs:
         - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deploy.sh
 
-# add pipeline workflow
+# add pipeline job
 # PROD deployment to Kube cluster on AWS
   - name: kube-deploy-prod-sample
     type: runSh
