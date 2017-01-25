@@ -2,8 +2,6 @@
 
 # install Kubectl CLI
 install_KubectlCli() {
-  echo -n "installing kubectl CLI..."
-
   # add Kube config
   if [[ ! -d ~/.kube ]]; then
     mkdir ~/.kube
@@ -22,10 +20,11 @@ install_KubectlCli() {
 
   # install Kubernetes CLI
   if [[ ! $(which kubectl) ]]; then
+    echo -n "installing kubectl CLI..."
     curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
     chmod +x ./kubectl
     sudo mv ./kubectl /usr/local/bin/kubectl
-    if [[ $(kubectl help) ]]; then
+    if [[ $(which kubectl) ]]; then
       echo "kubectl CLI installed successfully"
     fi
   fi
