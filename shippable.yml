@@ -51,7 +51,7 @@ integrations:
         - versionName=$BRANCH.$BUILD_NUMBER
       branches:
         only:
-          - master
+          - runshDeploy
       on_success: always
       on_failure: never
       on_start: never
