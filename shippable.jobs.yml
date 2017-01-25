@@ -20,7 +20,7 @@ jobs:
       - IN: img-opts-sample-kube-test
       - TASK:
         - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/prepEnvironment.sh
-        # - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deploy.sh
+        - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deploy.sh
 
 # add pipeline workflow
 # PROD deployment to Kube cluster on AWS
@@ -33,6 +33,5 @@ jobs:
       - IN: int-aws
       - IN: img-opts-sample-kube-prod
       - TASK:
-        - script: mkdir -p ~/.kube && echo "$INTKUBE_INTEGRATION_MASTERKUBECONFIGCONTENT" > ~/.kube/config
         - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/prepEnvironmentProd.sh
         - script: . /build/IN/repo-sample-kube/gitRepo/pipeline/deploy.sh
