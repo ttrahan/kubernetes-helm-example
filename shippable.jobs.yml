@@ -38,4 +38,3 @@ jobs:
       - TASK:
         - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deploy.sh
-         est
