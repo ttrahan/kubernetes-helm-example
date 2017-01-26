@@ -2,15 +2,12 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   # Unique key of the Deployment instance
-  name: nginx-$ENVIRONMENT
+  name: nginx2-$ENVIRONMENT
 spec:
   # 3 Pods should exist at all times.
   replicas: 2
   # Keep record of 10 revisions for rollback
   revisionHistoryLimit: 10
-  selector:
-    matchLabels:
-      app: nginx
   template:
     metadata:
       labels:
