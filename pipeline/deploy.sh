@@ -26,7 +26,6 @@ done;
 # for each deploySpec, execute deployment to Kube cluster
 for file in $GIT_REPO_PATH/pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
-  cat $file
   baseFile=${file##*/}
   deploymentName=${baseFile%.yaml}
   kubectl apply -f $file --record

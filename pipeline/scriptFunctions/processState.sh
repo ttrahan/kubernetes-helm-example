@@ -31,7 +31,7 @@ save_state_files() {
 
 # Load state
 load_state_variables() {
-  STATE_LOAD_LOCATION=/build/previousState
+  STATE_LOAD_LOCATION=$INCOMING_STATE_PATH
   echo -e "\n*** loading state - variables ***"
   if [[ -f $STATE_LOAD_LOCATION/variable_state.env ]]; then
     cat $STATE_LOAD_LOCATION/variable_state.env
