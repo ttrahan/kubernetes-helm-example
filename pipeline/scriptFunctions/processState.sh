@@ -7,7 +7,7 @@ save_state_variables() {
   # process each parameter passed in
   for var in "$@"; do
     if [[ ! -z $var ]]; then
-      echo -e "export "$var"="${!var} >> $STATE_SAVE_LOCATION/variable_state.env
+      echo -e "export "$var_PREVIOUS"="${!var} >> $STATE_SAVE_LOCATION/variable_state.env
     else
       echo "variable not found or is empty...state not saved"
     fi
@@ -41,5 +41,3 @@ load_state_variables() {
     echo "no state variables to load"
   fi
 }
-
-
