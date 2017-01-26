@@ -12,16 +12,16 @@ kubectl config use-context useast1.dev.example-kube-cluster.com
 
 # for each yaml template, generate an updated deploySpec
 ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')
-for file in $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deployTemplates/*.yaml; do
+for file in $GIT_REPO/pipeline/deployTemplates/*.yaml; do
   TEMPLATE=$file
   baseFile=${file##*/}
   deploymentName=${baseFile%.yaml}-$ENVIRONMENT
   DEST=$(echo $deploymentName | sed 's/-template//')
-  envsubst < $TEMPLATE > $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deploySpecs/$DEST.yaml
+  envsubst < $TEMPLATE > $GIT_REPO/pipeline/deploySpecs/$DEST.yaml
 done;
 
 # for each deploySpec, execute deployment to Kube cluster
-for file in $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deploySpecs/*.yaml; do
+for file in $GIT_REPO/pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
   baseFile=${file##*/}
   deploymentName=${baseFile%.yaml}
@@ -35,5 +35,5 @@ for file in $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deploySpecs/*.yaml; do
 done;
 
 # # save State to be used in subsequent jobs or next time this job runs. Pass variable names or files (with path) as parameters
-save_state_variables SAMPLE_IMAGE_URL SAMPLE_IMAGE_TAG
+save_state_variables SAMPLE_IMAGE_URL SAMPLE_IMAGE_TAG NGINX_IMAGE_URL NGINX_IMAGE_TAG
 save_state_files /build/IN/img-sample-kube/version.json
