@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   # Unique key of the Deployment instance
-  name: nginx2-$ENVIRONMENT
+  name: nginx-$ENVIRONMENT
 spec:
   # 3 Pods should exist at all times.
   replicas: 2

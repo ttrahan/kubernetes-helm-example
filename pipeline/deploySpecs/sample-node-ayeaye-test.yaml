@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   # Unique key of the Deployment instance
-  name: sample-node-ayeaye-
+  name: sample-node-ayeaye-test
 spec:
   # 3 Pods should exist at all times.
   replicas: 1
@@ -14,21 +14,19 @@ spec:
         # Apply this label to pods and default
         # the Deployment label selector to this value
         app: sample-node-ayeaye
-        env: 
+        env: test
     spec:
       containers:
       - name: sample-node-ayeaye
-        image: :
+        image: kube-example:master.3
         ports:
         - containerPort: 80
         env:
         - name: ENVIRONMENT
-          value: ""
+          value: "test"
         - name: PORT
-          value: ""
+          value: "80"
         resources:
           requests:
-            memory: 128
+            memory: 64
             cpu: 0.25
-            # memory: 
-            # cpu: 
