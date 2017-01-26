@@ -8,6 +8,9 @@ spec:
   replicas: 2
   # Keep record of 10 revisions for rollback
   revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: nginx
   template:
     metadata:
       labels:
