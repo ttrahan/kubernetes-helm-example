@@ -33,7 +33,10 @@ echo -e "\n*** loading state ***"
 load_state_variables() {
   STATE_LOAD_LOCATION=/build/previousState
   if [[ -f $STATE_LOAD_LOCATION/variable_state.env ]]; then
+    cat $STATE_LOAD_LOCATION/variable_state.env
     source $STATE_LOAD_LOCATION/variable_state.env
     echo "variables loaded to state successfully"
+  else
+    echo "no state variables to load"
   fi
 }

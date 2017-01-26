@@ -10,8 +10,8 @@ echo "deploying to Kubernetes cluster..."
 # set context for Kube deployment
 kubectl config use-context useast1.dev.example-kube-cluster.com
 
-echo "ENVIRONMENT= "$ENVIRONMENT
-echo "GIT_REPO_PATH= "$GIT_REPO_PATH
+echo "NGINX_IMAGE_URL= "$NGINX_IMAGE_URL
+echo "NGINX_IMAGE_TAG= "$NGINX_IMAGE_TAG
 
 # for each yaml template, generate an updated deploySpec
 ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')
@@ -26,6 +26,7 @@ done;
 # for each deploySpec, execute deployment to Kube cluster
 for file in $GIT_REPO_PATH/pipeline/deploySpecs/*.yaml; do
   echo "processing "$file
+  cat $file
   baseFile=${file##*/}
   deploymentName=${baseFile%.yaml}
   kubectl apply -f $file --record
