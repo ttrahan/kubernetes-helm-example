@@ -13,6 +13,7 @@ save_state_variables() {
     fi
   done
   echo "variables saved to state successfully"
+  cat $STATE_SAVE_LOCATION/variable_state.env
 }
 
 save_state_files() {
@@ -40,3 +41,5 @@ load_state_variables() {
     echo "no state variables to load"
   fi
 }
+
+
