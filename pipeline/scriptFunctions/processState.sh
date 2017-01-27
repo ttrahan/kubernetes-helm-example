@@ -13,7 +13,6 @@ save_state_variables() {
     fi
   done
   cat $STATE_SAVE_LOCATION/variable_state.env
-  aws s3 cp $STATE_SAVE_LOCATION/variable_state.env s3://clusters.example-kube-cluster.com
 }
 
 save_state_files() {
@@ -31,7 +30,7 @@ save_state_files() {
 }
 
 # Load state
-load_state_variables() {
+load_incoming_state_variables() {
   STATE_LOAD_LOCATION=$INCOMING_STATE_PATH
   echo -e "\n*** loading state - variables ***"
   ls -l $STATE_LOAD_LOCATION
