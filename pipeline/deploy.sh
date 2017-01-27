@@ -1,17 +1,12 @@
 #! /bin/bash -e
 
-# source environment variables (these come from shippable.resources.yml when running via Shippable pipeline)
-# set -a
-# source ./variables.env
-# set +a
-
 echo "deploying to Kubernetes cluster..."
 
 # set context for Kube deployment
 kubectl config use-context useast1.dev.example-kube-cluster.com
 
-echo "NGINX_IMAGE_URL= "$NGINX_IMAGE_URL
-echo "NGINX_IMAGE_TAG= "$NGINX_IMAGE_TAG
+# remove any prior/sample deploySpecs
+rm $GIT_REPO_PATH/pipeline/deploySpecs/*.yaml
 
 # for each yaml template, generate an updated deploySpec
 ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')
