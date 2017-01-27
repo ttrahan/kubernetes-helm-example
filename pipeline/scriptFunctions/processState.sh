@@ -34,6 +34,7 @@ save_state_files() {
 load_state_variables() {
   STATE_LOAD_LOCATION=$INCOMING_STATE_PATH
   echo -e "\n*** loading state - variables ***"
+  ls -l $STATE_LOAD_LOCATION
   if [[ -f $STATE_LOAD_LOCATION/variable_state.env ]]; then
     source $STATE_LOAD_LOCATION/variable_state.env
     echo "variables loaded to state successfully"
