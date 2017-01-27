@@ -5,7 +5,7 @@ metadata:
   name: nginx-$ENVIRONMENT
 spec:
   # 3 Pods should exist at all times.
-  replicas: 2
+  replicas: 1
   # Keep record of 10 revisions for rollback
   revisionHistoryLimit: 10
   template:
