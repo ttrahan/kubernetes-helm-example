@@ -34,7 +34,6 @@ load_state_variables() {
   STATE_LOAD_LOCATION=$INCOMING_STATE_PATH
   echo -e "\n*** loading state - variables ***"
   if [[ -f $STATE_LOAD_LOCATION/variable_state.env ]]; then
-    cat $STATE_LOAD_LOCATION/variable_state.env
     source $STATE_LOAD_LOCATION/variable_state.env
     echo "variables loaded to state successfully"
   else
