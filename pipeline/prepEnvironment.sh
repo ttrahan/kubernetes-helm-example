@@ -3,7 +3,6 @@
 # set path to the Git repo that holds the scripts
 # path injected automatically by Shippable based on gitRepo resource as Input
 export GIT_REPO_PATH=$REPOSAMPLEKUBE_PATH/gitRepo
-export INCOMING_STATE_PATH=$KUBEDEPLOYTESTSAMPLE_PATH/runSh
 
 # source functions used in this script
 for f in $GIT_REPO_PATH/pipeline/scriptFunctions/*.* ; do
@@ -16,9 +15,6 @@ install_ShellTools
 # install required CLIs
 install_AwsCli
 install_KubectlCli
-
-# load previous state
-load_incoming_state_variables
 
 # Leverage the environment variables that were automatically injected
 # into the job environment by Shippable (i.e named as Inputs to the
@@ -37,6 +33,8 @@ if [[ ! -z ${PARAMSTESTKUBE_PARAMS_ENVIRONMENT} ]]; then
 
   elif [[ ! -z ${PARAMSPRODKUBE_PARAMS_ENVIRONMENT} ]]; then
     echo "preparing PROD environment variables..."
+    export INCOMING_STATE_PATH=$KUBEDEPLOYTESTSAMPLE_PATH/runSh
+    load_incoming_state_variables # load incoming state from prior job
     export ENVIRONMENT=$PARAMSPRODKUBE_PARAMS_ENVIRONMENT
     export SAMPLE_PORT=$PARAMSSAMPLEPRODKUBE_PARAMS_PORT
     export SAMPLE_MEMORY=$IMGOPTSSAMPLEKUBEPROD_VERSION_MEMORY
