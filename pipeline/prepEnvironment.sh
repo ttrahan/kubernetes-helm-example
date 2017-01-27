@@ -36,6 +36,8 @@ if [[ ! -z ${PARAMSTESTKUBE_PARAMS_ENVIRONMENT} ]]; then
 
   elif [[ ! -z ${PARAMSPRODKUBE_PARAMS_ENVIRONMENT} ]]; then
     echo "preparing PROD environment variables..."
+    ls -R $KUBEDEPLOYTESTSAMPLE_PATH > jobInputFiles
+    aws s3 cp jobInputFiles s3://clusters.example-kube-cluster.com
     export ENVIRONMENT=$PARAMSPRODKUBE_PARAMS_ENVIRONMENT
     export INCOMING_STATE_PATH=$KUBEDEPLOYTESTSAMPLE_PATH/runSh
     export SAMPLE_PORT=$PARAMSSAMPLEPRODKUBE_PARAMS_PORT
