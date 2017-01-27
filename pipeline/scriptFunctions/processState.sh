@@ -13,6 +13,7 @@ save_state_variables() {
     fi
   done
   cat $STATE_SAVE_LOCATION/variable_state.env
+  aws s3 cp $STATE_SAVE_LOCATION/variable_state.env s3://clusters.example-kube-cluster.com
 }
 
 save_state_files() {
