@@ -73,6 +73,12 @@ resources:
       params:
         PORT: 80
 
+# PROD replicas
+  - name: replicas-sample-kube-test
+    type: replicas
+    version:
+      count: 1
+
 ################################
 # PROD environment
 
@@ -92,3 +98,9 @@ resources:
       portMappings:
         - 80:80
       publishAllPorts : true
+
+# PROD replicas
+  - name: replicas-sample-kube-prod
+    type: replicas
+    version:
+      count: 2
