@@ -9,15 +9,16 @@ jobs:
   - name: kube-deploy-test-sample
     type: runSh
     steps:
-      - IN: params-test-kube
-      - IN: params-sample-test-kube
       - IN: repo-sample-kube
         switch: off
       - IN: int-aws
       - IN: int-kube
+      - IN: params-test-kube
       - IN: img-sample-kube
-      - IN: img-nginx
       - IN: img-opts-sample-kube-test
+      - IN: params-sample-test-kube
+      - IN: replicas-sample-kube-test
+      - IN: img-nginx
       - TASK:
         - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deploy.sh
@@ -35,6 +36,7 @@ jobs:
       - IN: int-kube
       - IN: params-prod-kube
       - IN: img-opts-sample-kube-prod
+      - IN: replicas-sample-kube-prod
       - TASK:
         - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deploy.sh
