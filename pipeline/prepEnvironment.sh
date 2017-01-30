@@ -31,7 +31,7 @@ if [[ ! -z ${PARAMSTESTKUBE_PARAMS_ENVIRONMENT} ]]; then
   export SAMPLE_REPLICAS=$REPLICASSAMPLEKUBETEST_VERSION_COUNT
   export NGINX_IMAGE_URL=$IMGNGINX_POINTER_SOURCENAME
   export NGINX_IMAGE_TAG=$IMGNGINX_VERSION_VERSIONNAME
-  print env | grep "NGINX"
+  printenv | grep "NGINX"
 
   elif [[ ! -z ${PARAMSPRODKUBE_PARAMS_ENVIRONMENT} ]]; then
     echo "preparing PROD environment variables..."
