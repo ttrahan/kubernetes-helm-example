@@ -1,0 +1,22 @@
+# Default values for chartSample.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: test
+
+sample:
+  replicaCount: 
+  image:
+    repo: ttrahan/sample-node-ayeaye
+    tag: master.3
+  resources:
+    limits:
+      cpu: .25
+      memory: 128
+  port: 80
+
+nginx:
+  image:
+    repo: nginx
+    tag: 1.7.9
+

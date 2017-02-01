@@ -2,10 +2,10 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   # Unique key of the Deployment instance
-  name: sample-node-ayeaye-test
+  name: sample-node-ayeaye-{{ .Values.environment }}
 spec:
   # 3 Pods should exist at all times.
-  replicas: 1
+  replicas: {{ .Values.replicas }}
   # Keep record of 10 revisions for rollback
   revisionHistoryLimit: 10
   template:
@@ -13,20 +13,20 @@ spec:
       labels:
         # Apply this label to pods and default
         # the Deployment label selector to this value
-        app: sample-node-ayeaye
-        env: test
+        app: {{ .Chart.Name }}
+        env: {{ .Values.environment }} 
     spec:
       containers:
       - name: sample-node-ayeaye
-        image: kube-example:master.3
+        image: {{ .Values.sample.image.repo }}:{{ .Values.sample.image.tag }}
         ports:
         - containerPort: 80
         env:
         - name: ENVIRONMENT
-          value: "test"
+          value: "{{ .Values.environment }}"
         - name: PORT
-          value: "80"
+          value: "{{ .Values.sample.port }}"
         resources:
           requests:
-            memory: 64
-            cpu: 0.25
+            memory: {{ .Values.sample.resources.limits.memory }}
+            cpu: {{ .Values.sample.resources.limits.cpu }}

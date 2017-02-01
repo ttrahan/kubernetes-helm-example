@@ -1,0 +1,22 @@
+# Default values for chartSample.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: $ENVIRONMENT
+
+sample:
+  replicaCount: $SAMPLE_REPLICAS
+  image:
+    repo: $SAMPLE_IMAGE_URL
+    tag: $SAMPLE_IMAGE_TAG
+  resources:
+    limits:
+      cpu: $SAMPLE_CPU
+      memory: $SAMPLE_MEMORY
+  port: $SAMPLE_PORT
+
+nginx:
+  image:
+    repo: $NGINX_IMAGE_URL
+    tag: $NGINX_IMAGE_TAG
+
