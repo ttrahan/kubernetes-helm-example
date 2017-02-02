@@ -2,21 +2,21 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-environment: $ENVIRONMENT
+environment: test
 
 sample:
-  replicaCount: $SAMPLE_REPLICAS
+  replicaCount: 1
   image:
-    repo: $SAMPLE_IMAGE_URL
-    tag: $SAMPLE_IMAGE_TAG
+    repo: ttrahan/sample_node_ayeaye
+    tag: master.3
   resources:
     limits:
-      cpu: $SAMPLE_CPU
-      memory: $SAMPLE_MEMORY
-  port: $SAMPLE_PORT
+      cpu: .25
+      memory: 128
+  port: 80
 
 nginx:
   image:
-    repo: $NGINX_IMAGE_URL
-    tag: $NGINX_IMAGE_TAG
+    repo: nginx
+    tag: 1.7.9
 

@@ -2,10 +2,10 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   # Unique key of the Deployment instance
-  name: sample-node-ayeaye-{{ .Values.environment }}
+  name: sample-node-ayeaye-helm-{{ .Values.environment }}
 spec:
   # 3 Pods should exist at all times.
-  replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.sample.replicaCount | default 1 }}
   # Keep record of 10 revisions for rollback
   revisionHistoryLimit: 10
   template:

@@ -9,8 +9,8 @@ kubectl config use-context useast1.dev.example-kube-cluster.com
 ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')
 envsubst < $GIT_REPO_PATH/chartSample/values-template.yaml > $GIT_REPO_PATH/chartSample/values.yaml
 
-# for each deploySpec, execute deployment to Kube cluster
-echo "processing "$file
+# deploy to Kubernetes cluster via Helm
+echo "deploying via Helm"
 helm install ./chartSample
 
 # # save State to be used in subsequent jobs or next time this job runs. Pass variable names or files (with path) as parameters
