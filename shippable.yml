@@ -45,13 +45,13 @@ integrations:
     #   type: gcr
 
   notifications:
-    - integrationName: trigger-img-sample-kube
+    - integrationName: trigger-img-sample-kube-helm
       type: webhook
       payload:
         - versionName=$BRANCH.$BUILD_NUMBER
       branches:
         only:
-          - runshDeploy
+          - master
       on_success: always
       on_failure: never
       on_start: never

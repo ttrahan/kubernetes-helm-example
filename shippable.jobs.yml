@@ -9,15 +9,15 @@ jobs:
   - name: kube-helm-deploy-test-sample
     type: runSh
     steps:
-      - IN: repo-sample-kube
+      - IN: repo-sample-kube-helm
         switch: off
       - IN: int-aws
       - IN: int-kube
-      - IN: params-test-kube
-      - IN: img-sample-kube
-      - IN: img-opts-sample-kube-test
-      - IN: params-sample-test-kube
-      - IN: replicas-sample-kube-test
+      - IN: params-test-kube-helm
+      - IN: img-sample-kube-helm
+      - IN: img-opts-sample-kube-helm-test
+      - IN: params-sample-test-kube-helm
+      - IN: replicas-sample-kube-helm-test
       - IN: img-nginx
       - TASK:
         - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/prepEnvironment.sh
@@ -30,13 +30,13 @@ jobs:
     steps:
       - IN: kube-deploy-test-sample
         switch: off
-      - IN: repo-sample-kube
+      - IN: repo-sample-kube-helm
         switch: off
       - IN: int-aws
       - IN: int-kube
-      - IN: params-prod-kube
-      - IN: img-opts-sample-kube-prod
-      - IN: replicas-sample-kube-prod
+      - IN: params-prod-kube-helm
+      - IN: img-opts-sample-kube-helm-prod
+      - IN: replicas-sample-kube-helm-prod
       - TASK:
         - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deploy.sh
