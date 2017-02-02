@@ -28,7 +28,7 @@ jobs:
   - name: kube-helm-deploy-prod-sample
     type: runSh
     steps:
-      - IN: kube-deploy-test-sample
+      - IN: kube-helm-deploy-test-sample
         switch: off
       - IN: repo-sample-kube-helm
         switch: off
