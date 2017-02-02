@@ -7,7 +7,8 @@ kubectl config use-context useast1.dev.example-kube-cluster.com
 
 # update Helm values.yaml with pipeline values 
 ENVIRONMENT=$(echo "$ENVIRONMENT" | awk '{print tolower($0)}')
-envsubst < $GIT_REPO_PATH/chartSample/values-template.yaml > $GIT_REPO_PATH/chartSample/values.yaml
+cd $GIT_REPO_PATH/gitRepo
+envsubst < ./chartSample/values-template.yaml > ./chartSample/values.yaml
 
 # deploy to Kubernetes cluster via Helm
 echo "deploying via Helm"

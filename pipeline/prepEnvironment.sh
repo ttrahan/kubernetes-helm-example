@@ -35,7 +35,7 @@ if [[ ! -z ${PARAMSTESTKUBEHELM_PARAMS_ENVIRONMENT} ]]; then
 
   elif [[ ! -z ${PARAMSPRODKUBE_PARAMS_ENVIRONMENT} ]]; then
     echo "preparing PROD environment variables..."
-    export INCOMING_STATE_PATH=$KUBEDEPLOYTESTSAMPLE_PATH/runSh
+    export INCOMING_STATE_PATH=$KUBEHELMDEPLOYTESTSAMPLE_PATH/runSh
     load_incoming_state_variables # load incoming state from prior job
     export ENVIRONMENT=$PARAMSPRODKUBEHELM_PARAMS_ENVIRONMENT
     export SAMPLE_PORT=$PARAMSSAMPLEPRODKUBEHELM_PARAMS_PORT
