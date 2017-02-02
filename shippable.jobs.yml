@@ -6,7 +6,7 @@ jobs:
 
 # add pipeline job
 # TEST deployment to Kube cluster on AWS
-  - name: kube-deploy-test-sample
+  - name: kube-helm-deploy-test-sample
     type: runSh
     steps:
       - IN: repo-sample-kube
@@ -25,7 +25,7 @@ jobs:
 
 # add pipeline job
 # PROD deployment to Kube cluster on AWS
-  - name: kube-deploy-prod-sample
+  - name: kube-helm-deploy-prod-sample
     type: runSh
     steps:
       - IN: kube-deploy-test-sample

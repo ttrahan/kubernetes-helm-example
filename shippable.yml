@@ -3,7 +3,7 @@ language: node_js
 
 env:
   global:
-    - REPO=kube-example-helm
+    - REPO=kubernetes-example-helm
     - DOCKER_HUB_URL=ttrahan # {account name}
     # - AMAZON_ECR_URL=288971733297.dkr.ecr.us-east-1.amazonaws.com # {AWS account ID}.dkr.ecr.us-east-1
     # - QUAY_URL="quay.io/ttrahan" # quay.io/{account name}

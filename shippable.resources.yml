@@ -34,7 +34,7 @@ resources:
     type: gitRepo
     integration: ttrahan-gh
     pointer:
-      sourceName: ttrahan/kube-example
+      sourceName: ttrahan/kubernetes-helm-example
       branch: runshDeploy
 
 # Docker Image
@@ -42,7 +42,7 @@ resources:
     type: image
     integration: ttrahan-dh
     pointer:
-      sourceName: ttrahan/kube-example
+      sourceName: ttrahan/kubernetes-helm-example
     seed:
       versionName: master.1
 
@@ -57,7 +57,7 @@ resources:
         ENVIRONMENT: "TEST"
 
 # Docker Image Options - Sample Node Aye-Aye component
-  - name: img-opts-sample-kube-test
+  - name: img-opts-sample-kube-helm-test
     type: dockerOptions
     version:
       memory: 64
@@ -74,7 +74,7 @@ resources:
         PORT: 80
 
 # PROD replicas
-  - name: replicas-sample-kube-test
+  - name: replicas-sample-kube-helm-test
     type: replicas
     version:
       count: 1
@@ -90,7 +90,7 @@ resources:
         ENVIRONMENT: "PROD"
 
 # Docker Image Options - Sample Node Aye-Aye component
-  - name: img-opts-sample-kube-prod
+  - name: img-opts-sample-kube-helm-prod
     type: dockerOptions
     version:
       memory: 128
@@ -100,7 +100,7 @@ resources:
       publishAllPorts : true
 
 # PROD replicas
-  - name: replicas-sample-kube-prod
+  - name: replicas-sample-kube-helm-prod
     type: replicas
     version:
       count: 2
