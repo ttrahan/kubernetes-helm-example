@@ -33,7 +33,7 @@ if [[ ! -z ${PARAMSTESTKUBEHELM_PARAMS_ENVIRONMENT} ]]; then
   export NGINX_IMAGE_URL=$IMGNGINX_SOURCENAME
   export NGINX_IMAGE_TAG=$IMGNGINX_VERSIONNAME
 
-  elif [[ ! -z ${PARAMSPRODKUBE_PARAMS_ENVIRONMENT} ]]; then
+  elif [[ ! -z ${PARAMSPRODKUBEHELM_PARAMS_ENVIRONMENT} ]]; then
     echo "preparing PROD environment variables..."
     export INCOMING_STATE_PATH=$KUBEHELMDEPLOYTESTSAMPLE_PATH/runSh
     load_incoming_state_variables # load incoming state from prior job
