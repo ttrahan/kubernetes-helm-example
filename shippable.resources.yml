@@ -6,12 +6,12 @@ resources:
 
 ################################
 
-  - name: int-kube
+  - name: int-kube-helm
     type: integration
     integration: ttrahan-kube
 
 # Integration to that stores AWS credentials
-  - name: int-aws
+  - name: int-aws-helm
     type: integration
     integration: ttrahan-aws
 
@@ -19,7 +19,7 @@ resources:
 # Nginx component
 
 # Docker Image
-  - name: img-nginx
+  - name: img-nginx-helm
     type: image
     pointer:
       sourceName: nginx
@@ -30,15 +30,15 @@ resources:
 # Sample Node Aye-Aye component
 
 # application code
-  - name: repo-sample-kube
+  - name: repo-sample-kube-helm
     type: gitRepo
     integration: ttrahan-gh
     pointer:
       sourceName: ttrahan/kubernetes-helm-example
-      branch: runshDeploy
+      branch: master
 
 # Docker Image
-  - name: img-sample-kube
+  - name: img-sample-kube-helm
     type: image
     integration: ttrahan-dh
     pointer:
@@ -50,7 +50,7 @@ resources:
 # TEST environment
 
 # Global env vars - Test environment
-  - name: params-test-kube
+  - name: params-test-kube-helm
     type: params
     version:
       params:
@@ -67,7 +67,7 @@ resources:
       publishAllPorts : true
 
 # env vars - Sample Node Aye-Aye component - TEST
-  - name: params-sample-test-kube
+  - name: params-sample-test-kube-helm
     type: params
     version:
       params:
@@ -83,12 +83,12 @@ resources:
 # PROD environment
 
 # Global env vars - Prod environment
-  - name: params-prod-kube
+  - name: params-prod-kube-helm
     type: params
     version:
       params:
         ENVIRONMENT: "PROD"
-
+          Docker
 # Docker Image Options - Sample Node Aye-Aye component
   - name: img-opts-sample-kube-helm-prod
     type: dockerOptions
