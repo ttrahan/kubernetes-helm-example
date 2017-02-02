@@ -88,7 +88,7 @@ resources:
     version:
       params:
         ENVIRONMENT: "PROD"
-          Docker
+          
 # Docker Image Options - Sample Node Aye-Aye component
   - name: img-opts-sample-kube-helm-prod
     type: dockerOptions
