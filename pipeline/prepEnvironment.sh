@@ -2,7 +2,7 @@
 
 # set path to the Git repo that holds the scripts
 # path injected automatically by Shippable based on gitRepo resource as Input
-export GIT_REPO_PATH=$REPOSAMPLEKUBE_PATH/gitRepo
+export GIT_REPO_PATH=$REPOSAMPLEKUBE_PATH
 
 # source functions used in this script
 for f in $GIT_REPO_PATH/pipeline/scriptFunctions/*.* ; do
