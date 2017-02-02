@@ -2,10 +2,10 @@
 
 # set path to the Git repo that holds the scripts
 # path injected automatically by Shippable based on gitRepo resource as Input
-export GIT_REPO_PATH=$REPOSAMPLEKUBE_PATH
+export GIT_REPO_PATH=$REPOSAMPLEKUBEHELM_PATH
 
 # source functions used in this script
-for f in $GIT_REPO_PATH/pipeline/scriptFunctions/*.* ; do
+for f in $GIT_REPO_PATH/gitRepo/pipeline/scriptFunctions/*.* ; do
   source $f ;
 done
 
@@ -21,9 +21,9 @@ install_HelmCli
 # into the job environment by Shippable (i.e named as Inputs to the
 # runSh jobs in shippable.job.yml:
 
-if [[ ! -z ${PARAMSTESTKUBE_PARAMS_ENVIRONMENT} ]]; then
+if [[ ! -z ${PARAMSTESTKUBEHELM_PARAMS_ENVIRONMENT} ]]; then
   echo "preparing TEST environment variables..."
-  export ENVIRONMENT=$PARAMSTESTKUBE_PARAMS_ENVIRONMENT
+  export ENVIRONMENT=$PARAMSTESTKUBEHELM_PARAMS_ENVIRONMENT
   export SAMPLE_PORT=$PARAMSSAMPLETESTKUBEHELM_PARAMS_PORT
   export SAMPLE_MEMORY=$IMGOPTSSAMPLEKUBEHELMTEST_MEMORY
   export SAMPLE_CPU=$IMGOPTSSAMPLEKUBEHELMTEST_CPUSHARES

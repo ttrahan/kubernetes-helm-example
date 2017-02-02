@@ -20,8 +20,8 @@ jobs:
       - IN: replicas-sample-kube-helm-test
       - IN: img-nginx
       - TASK:
-        - script: . $REPOSAMPLEKUBE_PATH/pipeline/prepEnvironment.sh
-        - script: . $REPOSAMPLEKUBE_PATH/pipeline/deploy.sh
+        - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/prepEnvironment.sh
+        - script: . $REPOSAMPLEKUBE_PATH/gitRepo/pipeline/deploy.sh
 
 # add pipeline job
 # PROD deployment to Kube cluster on AWS
