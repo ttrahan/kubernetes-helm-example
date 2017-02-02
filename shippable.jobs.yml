@@ -20,9 +20,9 @@ jobs:
       - IN: replicas-sample-kube-helm-test
       - IN: img-nginx
       - TASK:
-        - script: printenv | grep "HELM" 
-        - script: . $REPOSAMPLEKUBEHELM_PATH/gitRepo/pipeline/prepEnvironment.sh
-        - script: . $REPOSAMPLEKUBEHELM_PATH/gitRepo/pipeline/deploy.sh
+        - script: printenv 
+        # - script: . $REPOSAMPLEKUBEHELM_PATH/gitRepo/pipeline/prepEnvironment.sh
+        # - script: . $REPOSAMPLEKUBEHELM_PATH/gitRepo/pipeline/deploy.sh
 
 # add pipeline job
 # PROD deployment to Kube cluster on AWS
