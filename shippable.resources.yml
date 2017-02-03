@@ -55,6 +55,7 @@ resources:
     version:
       params:
         ENVIRONMENT: "TEST"
+        CLUSTER: "useast1.dev.example-kube-cluster.com"
 
 # env vars - Sample Node Aye-Aye component - TEST
   - name: params-sample-kube-helm-test
@@ -75,6 +76,7 @@ resources:
     version:
       params:
         ENVIRONMENT: "PROD"
+        CLUSTER: "useast1.dev.example-kube-cluster.com"
 
 # env vars - Sample Node Aye-Aye component - TEST
   - name: params-sample-kube-helm-prod

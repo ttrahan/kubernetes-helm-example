@@ -18,6 +18,7 @@ jobs:
       - IN: params-sample-kube-helm-test
       - IN: img-nginx
       - TASK:
+        - script: echo "starting tasks"
         - script: printenv | grep "IMGOPTS" 
         - script: . $REPOSAMPLEKUBEHELM_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $REPOSAMPLEKUBEHELM_PATH/gitRepo/pipeline/deploy.sh
