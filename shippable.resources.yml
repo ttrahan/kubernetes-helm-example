@@ -50,7 +50,7 @@ resources:
 # TEST environment
 
 # Global env vars - Test environment
-  - name: params-test-kube-helm
+  - name: params-kube-helm-test
     type: params
     version:
       params:
