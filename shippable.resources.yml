@@ -56,51 +56,31 @@ resources:
       params:
         ENVIRONMENT: "TEST"
 
-# Docker Image Options - Sample Node Aye-Aye component
-  - name: img-opts-sample-kube-helm-test
-    type: dockerOptions
-    version:
-      memory: 64
-      cpuShares: .25
-      portMappings:
-        - 80:80
-      publishAllPorts : true
-
 # env vars - Sample Node Aye-Aye component - TEST
-  - name: params-sample-test-kube-helm
+  - name: params-sample-kube-helm-test
     type: params
     version:
       params:
         PORT: 80
-
-# PROD replicas
-  - name: replicas-sample-kube-helm-test
-    type: replicas
-    version:
-      count: 1
+        MEMORY: 64
+        CPUSHARES: .25
+        REPLICAS: 1
 
 ################################
 # PROD environment
 
 # Global env vars - Prod environment
-  - name: params-prod-kube-helm
-    type: params
+  - name: params-kube-helm-prod
     version:
       params:
         ENVIRONMENT: "PROD"
-          
-# Docker Image Options - Sample Node Aye-Aye component
-  - name: img-opts-sample-kube-helm-prod
-    type: dockerOptions
-    version:
-      memory: 128
-      cpuShares: .5
-      portMappings:
-        - 80:80
-      publishAllPorts : true
 
-# PROD replicas
-  - name: replicas-sample-kube-helm-prod
-    type: replicas
+# env vars - Sample Node Aye-Aye component - TEST
+  - name: params-sample-kube-helm-prod
+    type: params
     version:
-      count: 2
+      params:
+        PORT: 80
+        MEMORY: 128
+        CPUSHARES: .5
+        REPLICAS: 2

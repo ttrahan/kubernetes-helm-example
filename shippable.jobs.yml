@@ -9,15 +9,13 @@ jobs:
   - name: kube-helm-deploy-test-sample
     type: runSh
     steps:
-      - IN: repo-sample-kube-helm
-        switch: off
       - IN: int-aws
       - IN: int-kube
       - IN: params-test-kube-helm
+      - IN: repo-sample-kube-helm
+        switch: off
       - IN: img-sample-kube-helm
-      - IN: img-opts-sample-kube-helm-test
       - IN: params-sample-test-kube-helm
-      - IN: replicas-sample-kube-helm-test
       - IN: img-nginx
       - TASK:
         - script: printenv | grep "IMGOPTS" 
@@ -31,13 +29,12 @@ jobs:
     steps:
       - IN: kube-helm-deploy-test-sample
         switch: off
-      - IN: repo-sample-kube-helm
-        switch: off
       - IN: int-aws
       - IN: int-kube
-      - IN: params-prod-kube-helm
-      - IN: img-opts-sample-kube-helm-prod
-      - IN: replicas-sample-kube-helm-prod
+      - IN: params-kube-helm-prod
+      - IN: repo-sample-kube-helm
+        switch: off
+      - IN: params-sample-kube-helm-prod
       - TASK:
         - script: . $REPOSAMPLEKUBEHELM_PATH/gitRepo/pipeline/prepEnvironment.sh
         - script: . $REPOSAMPLEKUBEHELM_PATH/gitRepo/pipeline/deploy.sh
