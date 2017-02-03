@@ -71,6 +71,7 @@ resources:
 
 # Global env vars - Prod environment
   - name: params-kube-helm-prod
+    type: params
     version:
       params:
         ENVIRONMENT: "PROD"
