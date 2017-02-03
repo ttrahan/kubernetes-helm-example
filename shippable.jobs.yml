@@ -11,11 +11,11 @@ jobs:
     steps:
       - IN: int-aws
       - IN: int-kube
-      - IN: params-test-kube-helm
+      - IN: params-kube-helm-test
       - IN: repo-sample-kube-helm
         switch: off
       - IN: img-sample-kube-helm
-      - IN: params-sample-test-kube-helm
+      - IN: params-sample-kube-helm-test
       - IN: img-nginx
       - TASK:
         - script: printenv | grep "IMGOPTS" 
