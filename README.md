@@ -27,5 +27,9 @@ Delete the cluster:
 kops delete cluster useast1.dev.example-kube-cluster.com --yes
 ```
 
+Note: Due to [this issue](https://github.com/kubernetes/kops/issues/1533), after
+deleting the cluster, you must manually delete the cluster's information from 
+~/.kube/config.
+
 To add ability to pull images from private registry:
 https://kubernetes.io/docs/user-guide/images/#specifying-imagepullsecrets-on-a-pod

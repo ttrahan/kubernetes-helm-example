@@ -21,8 +21,8 @@ jobs:
       - IN: img-nginx
       - TASK:
         - script: printenv | grep "IMGOPTS" 
-        # - script: . $REPOSAMPLEKUBEHELM_PATH/gitRepo/pipeline/prepEnvironment.sh
-        # - script: . $REPOSAMPLEKUBEHELM_PATH/gitRepo/pipeline/deploy.sh
+        - script: . $REPOSAMPLEKUBEHELM_PATH/gitRepo/pipeline/prepEnvironment.sh
+        - script: . $REPOSAMPLEKUBEHELM_PATH/gitRepo/pipeline/deploy.sh
 
 # add pipeline job
 # PROD deployment to Kube cluster on AWS
